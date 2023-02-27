@@ -1,0 +1,68 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="requests-background">
+    <div class="buttons-1">
+        <div class="button-2">
+            <a href="{% url 'pendingprojects' request.user.profile.id %}">
+                <button class="default-btn">
+                    Pending
+                </button>
+            </a>
+        </div>
+        <div class="button-2">
+            <a href="{% url 'projectsasstudent' request.user.profile.id %}">
+                <button class="default-btn">
+                    {% if request.user.profile.role != 'student' %}
+                    As student
+                    {% elif request.user.profile.role == 'student' %}
+                    Active requests
+                    {% endif %}
+                </button>
+            </a>
+        </div>
+        {% if request.user.profile.role != 'student' %}
+        <div class="button-1">
+            <div class="button-2">
+                <a href="{% url 'projectsasmentor' request.user.profile.id %}">
+                    <button class="default-btn">
+                        As mentor
+                    </button>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+        <div class="button-2">
+            <a href="{% url 'completedprojects' request.user.profile.id %}">
+                <button class="default-btn">
+                    Finished
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="requests-box">
+        <div class="requests-list-background">
+            <div class="requests-list">
+                {% for project in projects %}
+                    <div class="request-background">
+                        <div class="request-name">
+                            <a href="{% url 'onerequest' project.id %}" class="request-link">
+                                <div class="request">
+                                    {{project.title}}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="requests-list-last-project">
+                    No More Requests
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

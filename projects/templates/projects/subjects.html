@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="buttons-1">
+    <div class="button-2">
+        <a href="{% url 'allmentors' %}">
+            <button class="default-btn">
+                Mentors
+            </button>
+        </a>
+    </div>
+    {% if request.user.profile.role != 'student' %}
+    <div class="button-1">
+        <div class="button-2">
+            <a href="{% url 'allrequests' %}">
+                <button class="default-btn">
+                    Requests
+                </button>
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+<div class="subjects-box">
+    <div class="subjects-list-background">
+        <div class="subjects-list">
+            {% for subject in subjects %}
+            <div class="name-background">
+                <div class="name">
+                    <div class="subject">
+                        <a href="{% url 'mentors' subject.title %}" class="subject-link">
+                            {{subject.title}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

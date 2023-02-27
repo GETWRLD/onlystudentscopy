@@ -1,0 +1,64 @@
+.account-box {
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 90px;
+}
+
+.account-list {
+    display: grid;
+    grid-template-columns: 1fr ;
+    row-gap: 10px;
+    column-gap: 10px;
+    background-color: rgb(43, 43, 43);
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-radius: 10px;
+    min-width: 700px;
+    max-width: 2300px;
+}
+
+.account-list-background {
+    background-image: linear-gradient(to bottom right, rgb(0, 89, 255), rgb(0, 255, 115));
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 3px;
+    border-radius: 10px;
+    min-width: 830px;
+    max-width: 2330px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.account-image {
+    max-width: 1000px;
+    border-radius: 10px;
+    height: 500px;
+    object-fit: cover;
+    object-position: center;
+    min-width: 100px;
+    width: 100%;
+}
+
+.account-field {
+    background-color: rgb(70, 70, 70);
+    padding: 15px;
+    max-width: 970px;
+    border-radius: 10px;
+    min-width: 100px;
+    width: 100%;
+}
+
+.skills {
+    background-color: rgb(70, 70, 70);
+    padding: 15px;
+    max-width: 970px;
+    border-radius: 10px;
+    min-width: 100px;
+    width: 100%;
+}
+
+.skill {
+    margin: 10px;
+}

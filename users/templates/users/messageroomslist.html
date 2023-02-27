@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="messagerooms-box">
+    <div class="messagerooms-list-background">
+        <div class="messagerooms-list">
+            {% for messageroom in messagerooms %}
+            <div class="messageroom-background">
+                <div class="messageroom-name">
+                    <div class="messageroom">
+                        <a href="{% url 'messageroom' messageroom.id %}" class="message-link">
+                            {% if request.user.profile.username == messageroom.user1.username %}
+                            {{messageroom.user2}}
+                            {% elif request.user.profile.username == messageroom.user2.username %}
+                            {{messageroom.user1}}
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

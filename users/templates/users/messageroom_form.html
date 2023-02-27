@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="messageroom-form-background">
+    <form class="messageroom-form" method="POST">
+        {% csrf_token %}
+        <p>Create messageroom</p>
+        <button>Create</button>
+    </form>
+</div>
+
+{% endblock content %}

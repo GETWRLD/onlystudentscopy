@@ -1,0 +1,7 @@
+{% load static %}
+
+{% if request.user.profile.role == 'student' %}
+<a class="apply" href="{% url 'applyformentor' %}">
+    <button class="apply-btn">Become a mentor/teacher</button>
+</a>
+{% endif %}

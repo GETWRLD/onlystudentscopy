@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="allrequests">
+    {% for project in projects %}
+    {% if project.is_completed == False%}
+    {% if project.is_accepted == False  %}
+    <div class="request2">
+        <a class="public-request-link" href="{% url 'onerequest' project.id %}">
+            {{project}}
+        </a>
+    </div>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock content %}

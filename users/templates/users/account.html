@@ -1,0 +1,84 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="account-box">
+  <div class="account-list-background">
+      <div class="account-list">
+        <div class="account-image-box">
+          <img class="account-image" src="{{account.imageURL}}">
+        </div>
+        <div class="account-field">
+           {{account.username}}
+        </div>
+        <div class="account-field">
+            {{account.email}}
+        </div>
+        {% if account.short_intro %}
+        <div class="account-field">
+          {{account.short_intro}}
+        </div>
+        {% endif %}
+        {% if account.bio %}
+        <div class="account-field">
+          {{account.bio}}
+        </div>
+        {% endif %}
+        <div class="social-background">
+            {% if account.social_twitter %}
+            <li>
+              <a title="Twitter" href="{{profile.social_twitter}}" target="_blank"><i class="im im-twitter"></i></a>
+            </li>
+            {% endif %}
+          
+            {% if account.social_linkedin %}
+            <li>
+              <a title="LinkedIn" href="{{profile.social_linkedin}}" target="_blank"><i class="im im-linkedin"></i></a>
+            </li>
+            {% endif %}
+          
+            {% if account.social_website %}
+            <li>
+              <a title="Personal Website" href="{{profile.social_website}}" target="_blank"><i class="im im-globe"></i></a>
+            </li>
+            {% endif %}
+          
+            {% if account.social_youtube %}
+            <li>
+              <a title="Twitter" href="{{profile.social_youtube}}" target="_blank"><i class="im im-twitter"></i></a>
+            </li>
+            {% endif %}
+          
+            {% if account.social_vk %}
+            <li>
+              <a title="Twitter" href="{{profile.social_vk}}" target="_blank"><i class="im im-twitter"></i></a>
+            </li>
+            {% endif %}
+          
+            {% if account.social_telegram %}
+            <li>
+              <a title="Twitter" href="{{profile.social_telegram}}" target="_blank"><i class="im im-twitter"></i></a>
+            </li>
+            {% endif %}
+        </div>
+        <div class="skills">
+          {% for subject in account.subjects.all %}
+          <div class="skill">
+            {{subject}}
+          </div>
+          {% endfor %}
+        </div>
+        <div>
+          <a href="{% url 'edit-account' %}">
+            <button class="edit-account-button">
+              Edit
+            </button>
+          </a>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

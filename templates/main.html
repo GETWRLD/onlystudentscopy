@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/subjects.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/login_register.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/subject_mentors.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/projectform.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/requests.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/onerequest.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/allmentors.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/allrequests.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/inbox.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/message_form.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/message.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/messageroom_form.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/messageroomslist.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/messageroom.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/account.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/account_form.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/mentorsstats.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/mentorstats.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/applyforrole.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/projectreview.css' %}">
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        {% block content %}
+        {% endblock content %}
+        <footer class="footer">
+            {% include 'footer.html' %}
+        </footer>
+    </body>
+</html>

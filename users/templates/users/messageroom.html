@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<div class="messagerooms-box">
+    <div class="messages-list-background">
+        <div class="messages-list">
+            {% for message in messages %}
+            {% if message.sender == sender %}
+            <div class="message-sent-bg">
+              <div class="message-sent">
+                {{message.body}}
+              </div>
+            </div>
+            {% else %}
+            <div class="message-received-bg">
+              <div class="message-received">
+                {{message.body}}
+            </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="message-form-background">
+          <form class="message-form" method="POST">
+              {% csrf_token %}
+              <div class="message-input-group">
+                  {% for field in form %}
+                  {{field}}
+                  {% endfor %}
+                  <label class="user-label">Write to {{recepient}}</label>
+              </div>
+                <button class="send-button">
+                  <div class="svg-wrapper-1">
+                    <div class="svg-wrapper">
+                      <svg viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <span>Send</span>
+                </button>
+          </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

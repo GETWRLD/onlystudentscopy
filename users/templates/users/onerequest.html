@@ -1,0 +1,88 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="requests-box">
+    <div class="requests-list-background">
+        <div class="requests-list">
+            {% if onerequest.is_accepted %}
+                {% if onerequest.is_completed %}
+                <div class="project-finished">
+                    Project is finished
+                </div>
+                <div class="project-fields">
+                    <div class="project-description">
+                        {{onerequest.description}}
+                    </div>
+                    <div class="project-body">
+                        {{onerequest.body}}
+                    </div>
+                    <div class="project-meeting-link">
+                        {{onerequest.meeting_link}}
+                    </div>
+                    <div class="documents-link">
+                        {{onerequest.documents_link}}
+                    </div>
+                </div>
+                {% if reviewed == False %}
+                    {% if onerequest.mentor != request.user.profile %}
+                        <div class="project-review">
+                            <a href="{% url 'projectreview' onerequest.id %}">
+                                <button>Review</button>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endif %}
+                {% else %}
+                <div class="project-edit-bg">
+                    <form class="project-edit" method="POST">
+                        {% csrf_token %}
+                        <div class="edit-project-input-group">
+                            {% for field in active_project_form %}
+                            <div class="project-field">
+                                {{field}}
+                                <label class="user-label">{{field.label}}</label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <button class="save-edit-project" name="save-edit-project">
+                            Save
+                        </button>
+                    </form>
+                </div>
+                <form class="project_finish_form" method="POST">
+                    {% csrf_token %}
+                    <button class="save-edit-project" name="finish_project">
+                        Finish Project
+                    </button>
+                </form>
+                {% endif %}
+            {% else %}
+                <div class="request-student">
+                    {{onerequest.student}}
+                </div>
+                <div class="request-title">
+                    {{onerequest.title}}
+                </div>
+                <div class="request-description">
+                    {{onerequest.description}}
+                </div>
+                <div class="request-subject">
+                    {{onerequest.subject}}
+                </div>
+                {% if onerequest.mentor == request.user.profile %}
+                <div class="is-accepted">
+                    <form method="POST" class="project_accept_form">
+                        {% csrf_token %}
+                        <button class="accept-request" name="accept_request">Accept Request</button>
+                    </form>
+                </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

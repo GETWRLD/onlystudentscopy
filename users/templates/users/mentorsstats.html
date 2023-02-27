@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="mentors-background">
+    {% for mentor in mentors %}
+    <div class="mentor">
+        {{mentor}}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

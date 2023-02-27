@@ -1,0 +1,41 @@
+{% load static %}
+<div class="navbar-background">
+    <div class="navbar">
+        <div class="left-section">
+            <a href="{% url 'subjects' %}">
+                <img class="logo" src="{% static 'styles/logo_small.png' %}">
+            </a>
+        </div>
+        <div class="middle-section">
+            <input class="search-bar" type="text" placeholder="Search">
+            <button class="search-button">
+                <img class="search-button-image" src="{% static 'styles/loupe.png' %}">
+            </button>
+        </div>
+        <div class="right-section">
+            {% if request.user.is_authenticated %}
+                <div>
+                    <a href="{% url 'requests' user.profile.id %}"><img class="request-icon" src="{% static 'styles/mail.png' %}"></a>
+                </div>
+                {% if request.user.profile.role == 'teacher' %}
+                <div>
+                    <a href="{% url 'mentorsstats' %}"><img class="request-icon" src="{% static 'styles/mail.png' %}"></a>
+                </div>
+                {% endif %}
+            <a class="message-icon-a" href="{% url 'messageroomslist' %}">
+                <img class="message-icon" src="{% static 'styles/email.png' %}">
+            </a>
+            <a class="account-icon-a" href="{% url 'account' %}">
+                <img class="account-icon" src="{% static 'styles/user.png' %}">
+            </a>
+            <div class="login-logout-button-bg">
+                <a href="{% url 'logout' %}" class="login-logout-button">Log Out</a>
+            </div>
+            {% else %}
+            <div class="login-logout-button-bg">
+                <a href="{% url 'login' %}" class="login-logout-button">Log In</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

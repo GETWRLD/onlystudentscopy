@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="account-form-background">
+    <form class="account-form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="account-form-field">
+            <label>
+                {{field.name}}
+            </label>
+            {{field}}
+        </div>
+        {% endfor %}
+        <button class="account-form-btn">
+            Submit
+        </button>
+    </form>
+</div>
+{% endblock content %}

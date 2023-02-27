@@ -1,0 +1,538 @@
+from django.shortcuts import render, redirect
+from .models import Profile, Project, Review, Messageroom, Skill
+from .forms import CustomUserCreationForm, ProjectForm, MessageForm, MessageroomForm, ActiveProjectForm, StudentAccountForm, MentorApplyForm, TeacherApplyForm, MentorAccountForm, TeacherAccountForm, ProjectReviewForm
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate, logout
+from projects.models import Subject
+
+def registerUser(request):
+    page = 'register'
+    form = CustomUserCreationForm()
+
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+
+            messages.success(request, 'User account was created!')
+            return redirect('subjects')
+        
+        else:
+            messages.success(request, 'An error has occured during registration!')
+
+    context = {
+        'page':page,
+        'form':form
+    }
+
+    return render(request, 'users/login_register.html', context)
+
+
+def loginUser(request):
+    page = 'login'
+
+    if request.user.is_authenticated:
+        return redirect("subjects")
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        try:
+            user = User.objects.get(username=username)
+        except:
+            messages.error(request, 'Username does not exist')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user != None:
+            login(request, user)
+            return redirect("subjects")
+        else:
+            messages.error(request, 'Username OR password is incorrect')
+
+    context = {
+      'page': page
+    }
+    
+    return render(request, 'users/login_register.html', context)
+      
+def logoutUser(request):
+  logout(request)
+  messages.info(request, "User was logged out")
+  return redirect('login')
+
+
+def mentors(request, pk):
+    subject = Subject.objects.get(title=pk)
+    profiles = Profile.objects.filter(subjects=subject)
+
+    context = {
+        'profiles': profiles,
+        'subject': subject
+    }
+
+    return render(request, 'users/subject_mentors.html', context)
+
+
+def profile(request, pk):
+    profile = Profile.objects.get(username=pk)
+
+    context = {
+        'profile': profile
+    }
+
+    return render(request, 'users/profile.html', context)
+
+
+def createrequest(request, mentor):
+    form = ProjectForm()
+    mentor = Profile.objects.get(username=mentor)
+    student = request.user.profile
+
+    if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.student = student
+            project.mentor = mentor
+            project.save()
+            return redirect('profile', pk=mentor.username)
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'users/projectform.html', context)
+
+
+def createpublicrequest(request, pk):
+    form = ProjectForm()
+    student = request.user.profile
+
+    if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.student = student
+            project.private = False
+            project.save()
+            return redirect('allrequests')
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'users/projectform.html', context)
+
+
+def projects(request, pk):
+    mentor = Profile.objects.get(id=pk)
+    projects = Project.objects.filter(mentor=mentor)
+
+    context = {
+        'projects': projects
+    }
+
+    return render(request, 'users/requests.html', context)
+
+def projects_as_mentor(request, pk):
+    mentor = Profile.objects.get(id=pk)
+    projects = Project.objects.filter(mentor=mentor)
+    suitable_projects = []
+    for project in projects:
+        if project.is_completed == False and project.is_accepted == True:
+            suitable_projects.append(project)
+
+    context = {
+        'projects': suitable_projects
+    }
+
+    return render(request, 'users/requests.html', context)
+
+
+def projects_as_student(request, pk):
+    mentor = Profile.objects.get(id=pk)
+    projects = Project.objects.filter(student=mentor)
+    suitable_projects = []
+    for project in projects:
+        if project.is_completed == False and project.is_accepted == True:
+            suitable_projects.append(project)
+
+    context = {
+        'projects': suitable_projects
+    }
+
+    return render(request, 'users/requests.html', context)
+
+
+def completed_projects(request, pk):
+    mentor = Profile.objects.get(id=pk)
+    projects_mentor = Project.objects.filter(mentor=mentor)
+    projects_student = Project.objects.filter(student=mentor)
+    suitable_projects = []
+    for project in projects_mentor:
+        if project.is_completed == True and project.is_accepted == True:
+            suitable_projects.append(project)
+    for project in projects_student:
+        if project.is_completed == True and project.is_accepted == True:
+            suitable_projects.append(project)
+            
+    context = {
+        'projects': suitable_projects
+    }
+
+    return render(request, 'users/requests.html', context)
+
+
+def pending_projects(request, pk):
+    mentor = Profile.objects.get(id=pk)
+    projects_mentor = Project.objects.filter(mentor=mentor)
+    projects_student = Project.objects.filter(student=mentor)
+    suitable_projects = []
+    for project in projects_mentor:
+        if project.is_completed == False and project.is_accepted == False:
+            suitable_projects.append(project)
+    for project in projects_student:
+        if project.is_completed == False and project.is_accepted == False:
+            suitable_projects.append(project)
+
+    context = {
+        'projects': suitable_projects
+    }
+
+    return render(request, 'users/requests.html', context)
+
+
+def oneproject(request, pk):
+    onerequest = Project.objects.get(id=pk)
+    active_project_form = ActiveProjectForm(instance=onerequest)
+    mentor = request.user
+    reviewed = False
+    if onerequest.review_set.all():
+        reviewed = True
+
+    if request.method == 'POST':
+        if 'accept_request'  in request.POST:
+            onerequest.mentor = mentor.profile
+            onerequest.is_accepted = True
+            onerequest.save()
+
+        if 'finish_project' in request.POST:
+            onerequest.is_completed = True
+            onerequest.save()
+
+        if 'save-edit-project' in request.POST:
+            form = ActiveProjectForm(request.POST, instance=Project.objects.get(id=pk))
+            if form.is_valid():
+                onerequest = form.save(commit=False)
+                onerequest.save()
+                return redirect('onerequest', pk=onerequest.id)
+
+
+    context = {
+        'onerequest': onerequest,
+        'active_project_form': active_project_form,
+        'reviewed': reviewed
+    }
+
+    return render(request, 'users/onerequest.html', context)
+
+
+def projectreview(request, pk):
+    onerequest = Project.objects.get(id=pk)
+    review_form = ProjectReviewForm()
+    profile = onerequest.mentor
+    reviewed = False
+    if onerequest.review_set.all():
+        reviewed = True
+
+    if request.method == 'POST':
+        review_form = ProjectReviewForm(request.POST)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.owner = request.user.profile
+            review.project = onerequest
+            review.save()
+            profile.reviews
+            
+
+        return redirect('subjects')
+
+    context = {
+        'review_form': review_form
+    }
+
+    return render(request, 'users/projectreview.html', context)
+
+
+
+def allmentors(request):
+    profiles = Profile.objects.all()
+
+    context = {
+        'profiles': profiles
+    }
+
+    return render(request, 'users/allmentors.html', context)
+
+
+def allprojects(request):
+    projects = Project.objects.filter(private=False)
+
+    context = {
+        'projects': projects
+    }
+
+    return render(request, 'users/allrequests.html', context)
+    
+
+def inbox(request):
+  profile = request.user.profile
+  messageRequests = profile.messages.all()
+  unreadCount = messageRequests.filter(is_read=False).count()
+  context = {
+    'messageRequests': messageRequests,
+    'unreadCount': unreadCount,
+  }
+  return render(request, 'users/inbox.html', context) 
+
+
+def viewMessage(request, pk):
+  profile = request.user.profile
+  message = profile.messages.get(id=pk)
+  if message.is_read == False:
+    message.is_read = True
+    message.save()
+  context = {
+    'message': message,
+  }
+  return render(request, 'users/message.html', context)
+
+
+def createMessage(request, pk):
+  recipient = Profile.objects.get(username=pk)
+  form = MessageForm()
+
+  try:
+    sender = request.user.profile
+  except:
+    sender = None
+
+  if request.method == 'POST':
+
+    form = MessageForm(request.POST)
+    if form.is_valid():
+      message = form.save(commit=False)
+      message.sender = sender
+      message.recepient = Profile.objects.get(username=pk)
+
+      if sender:
+        message.name = sender.name
+        message.email = sender.email
+      
+      message.save()
+
+      messages.success(request, 'Your message was successfully sent!')
+      return redirect('profile', pk=recipient.username)
+
+  context = {
+    'recepient': recipient,
+    'form': form,
+  }
+  return render(request, 'users/message_form.html', context)
+
+
+def createmessageroom(request, pk):
+    user2 = Profile.objects.get(username=pk)
+    form = MessageroomForm
+    user1 = request.user.profile
+
+    if request.method == 'POST':
+        form = MessageroomForm(request.POST)
+        if form.is_valid():
+            messagerooms = Messageroom.objects.all()
+            messageroom = form.save(commit=False)
+            messageroom.user1 = user1
+            messageroom.user2 = Profile.objects.get(username=pk)
+            messageroom.name = f"{user2.username}+{user1.username}"
+            for messageroom1 in messagerooms:
+                if messageroom1.user2 == messageroom.user2:
+                    return redirect('subjects')
+                if messageroom1.user1 == messageroom.user2:
+                    return redirect('subjects')
+            else:
+                messageroom.save()
+            messageroom.save()
+
+            messages.success(request, 'Your message was successfully sent!')
+            return redirect('profile', pk=user2.username)
+
+
+    context = {
+    'user2': user2,
+    'form': form,
+    }
+    return render(request, 'users/messageroom_form.html', context)
+
+
+
+def messageroomslist(request):
+    user = request.user.profile
+
+    messagerooms1 = Messageroom.objects.filter(user1=user)
+    messagerooms2 = Messageroom.objects.filter(user2=user)
+
+    messagerooms = messagerooms1 | messagerooms2
+
+    context = {
+        'messagerooms': messagerooms
+    }
+
+    return render(request, 'users/messageroomslist.html', context)
+
+
+def messageroom(request, pk):
+    messageroom = Messageroom.objects.get(id=pk)
+    form = MessageForm()
+    sender = request.user.profile
+    if messageroom.user1 == request.user.profile:
+        recepient = messageroom.user2
+    elif messageroom.user2 == request.user.profile:
+        recepient = messageroom.user1
+
+    messages = messageroom.message_set.all()
+
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.sender = sender
+            message.messageroom = messageroom
+            message.save()
+
+            return redirect('messageroom', pk=messageroom.id)
+
+    context = {
+        'messages': messages,
+        'form': form,
+        'sender': sender,
+        'recepient': recepient
+    }
+
+    return render(request, 'users/messageroom.html', context)
+
+
+def account(request):
+    account = request.user.profile
+
+    context = {
+        'account': account
+    }
+
+    return render(request, 'users/account.html', context)
+
+
+def editaccount(request):
+    account = request.user.profile
+    if request.user.profile.role == 'student':
+        form = StudentAccountForm(instance=account)
+
+        if request.method == 'POST':
+            form = StudentAccountForm(request.POST, request.FILES, instance=account)
+            if form.is_valid():
+                form.save()
+                return redirect('account')
+
+    if request.user.profile.role == 'mentor':
+       form = MentorAccountForm(instance=account)
+
+       if request.method == 'POST':
+           form = MentorAccountForm(request.POST, request.FILES, instance=account)
+           if form.is_valid():
+               form.save()
+               return redirect('account')
+
+    if request.user.profile.role == 'teacher':
+       form = TeacherAccountForm(instance=account)
+
+       if request.method == 'POST':
+           form = TeacherAccountForm(request.POST, request.FILES, instance=account)
+           if form.is_valid():
+               form.save()
+               return redirect('account')
+
+    context = {
+        'account': account,
+        'form': form
+    }
+
+    return render(request, 'users/account_form.html', context)
+
+
+def mentorsstats(request):
+    mentors = Profile.objects.filter(role='mentor')
+
+    context = {
+        'mentors': mentors
+    }
+
+    return render(request, 'users/mentorsstats.html', context)
+
+
+def applyformentor(request):
+    page = 'mentor'
+    mentorform = MentorApplyForm()
+    user = request.user.profile
+
+    if request.method == 'POST':
+        mentorform = MentorApplyForm(request.POST, instance=user)
+        if mentorform.is_valid():
+            mentor = mentorform.save(commit=False)
+            user.role = 'mentor'
+            mentor.save()
+
+            return redirect('subjects')
+
+    context = {
+        'user': user,
+        'mentorform': mentorform,
+        'page': page
+    }
+
+    return render(request, 'users/applyforrole.html', context)
+
+
+def applyforteacher(request):
+    page = 'teacher'
+    teacherform = TeacherApplyForm()
+    user = request.user.profile
+
+    if request.method == 'POST':
+        teacherform = TeacherApplyForm(request.POST)
+        if teacherform.is_valid():
+            teacher = teacherform.save(commit=False)
+            teacher.owner = user
+            teacher.save()
+
+            return redirect('subjects')
+
+    context = {
+        'user': user,
+        'teacherform': teacherform,
+        'page': page
+    }
+
+    return render(request, 'users/applyforrole.html', context)
+
+
+
+
+
+
+
+
+
