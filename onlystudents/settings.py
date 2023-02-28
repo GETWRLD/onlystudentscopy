@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-&g==p_#+zeasg$h9@5=ze9=xvu!4^7w2!sgl6$18w9uvbpbrt^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['onlystudents.herokuapp.com']
 
 
 # Application definition
@@ -82,13 +82,23 @@ WSGI_APPLICATION = 'onlystudents.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd8uab7bucc7d2r',
+        'USER': 'bsbbvwfprdcuiv',
+        'PASSWORD': '4d7aad86d0566a7e97b18cfecb562128fe8a64e8d09426263f1251a7360e256b',
+        'HOST': 'ec2-34-197-84-74.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
