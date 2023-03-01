@@ -88,6 +88,12 @@
     }
 }
 
+@media (max-width: 1000px) {
+    .subjects-list {
+        grid-template-columns: 1fr;
+    }
+}
+
 .subject-link {
     color: white;
     text-decoration: none;
