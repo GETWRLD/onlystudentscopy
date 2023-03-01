@@ -224,6 +224,7 @@ def oneproject(request, pk):
         if 'finish_project' in request.POST:
             onerequest.is_completed = True
             onerequest.save()
+            request.user.profile.requests_number
 
         if 'save-edit-project' in request.POST:
             form = ActiveProjectForm(request.POST, instance=Project.objects.get(id=pk))
@@ -257,7 +258,8 @@ def projectreview(request, pk):
             review.owner = request.user.profile
             review.project = onerequest
             review.save()
-            profile.reviews
+            profile.reviews_ratio
+            profile.requests_number
             
 
         return redirect('subjects')

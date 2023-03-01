@@ -49,7 +49,7 @@ class Profile(models.Model):
     return url
 
   @property
-  def reviews(self):
+  def reviews_ratio(self):
     projects_queryset = self.project_set.all()
     all_reviews_sum = 0
     reviews = 0
@@ -58,9 +58,18 @@ class Profile(models.Model):
       all_reviews_sum = all_reviews_sum + int(review.value)
       reviews = reviews + 1
     ratio = (all_reviews_sum/reviews)*10
-    self.vote_total = reviews
+    #self.vote_total = reviews
     self.vote_ratio = ratio
     self.save()
+
+  @property
+  def requests_number(self):
+    projects_queryset = self.project_set.all()
+    all_projects_sum = 0
+    for project in projects_queryset:
+      all_projects_sum = all_projects_sum + 1
+      self.vote_total = all_projects_sum
+      self.save()
 
 
 class Project(models.Model):

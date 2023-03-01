@@ -2,22 +2,20 @@
 
 {% block content %}
 <div class="buttons-1">
-    <div class="button-2">
+    <div class="button-1">
         <a href="{% url 'allmentors' %}">
-            <button class="default-btn">
+            <button class="default-btn-subjects">
                 Mentors
             </button>
         </a>
     </div>
     {% if request.user.profile.role != 'student' %}
-    <div class="button-1">
-        <div class="button-2">
-            <a href="{% url 'allrequests' %}">
-                <button class="default-btn">
-                    Requests
-                </button>
-            </a>
-        </div>
+    <div class="button-2">
+        <a href="{% url 'allrequests' %}">
+            <button class="default-btn-subjects">
+                Requests
+            </button>
+        </a>
     </div>
     {% endif %}
 </div>
