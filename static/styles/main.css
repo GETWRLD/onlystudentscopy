@@ -233,7 +233,17 @@ a:active {
         height: 470px;
     }
     .right-section {
-        margin-left: 800px;
+        width: 910px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .left-section {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .middle-section {
+        margin-left: auto;
+        margin-right: auto;
     }
     .request-icon {
         height: 80px;
@@ -261,6 +271,7 @@ a:active {
     .search-bar {
         height: 130px;
         max-width: 730px;
+        width: 730px;
         padding-top: 15px;
     }
     .logo {
