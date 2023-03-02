@@ -289,4 +289,7 @@ a:active {
     body {
         padding-top: 550px;
     }
+    .default-btn {
+        font-size: 50px;
+    }
 }
