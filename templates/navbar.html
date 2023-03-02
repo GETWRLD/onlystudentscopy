@@ -12,7 +12,7 @@
                 <img class="search-button-image" src="{% static 'styles/loupe.png' %}">
             </button>
         </div>
-        <div class="right-section-1">
+        <div class="right-section">
             {% if request.user.is_authenticated %}
                 <div>
                     <a href="{% url 'requests' request.user.profile.id %}"><img class="request-icon" src="{% static 'styles/mail.png' %}"></a>
@@ -25,8 +25,7 @@
             <a class="message-icon-a" href="{% url 'messageroomslist' %}">
                 <img class="message-icon" src="{% static 'styles/email.png' %}">
             </a>
-        </div>
-        <div class="right-section-2">
+        
             <a class="account-icon-a" href="{% url 'account' %}">
                 <img class="account-icon" src="{% static 'styles/user.png' %}">
             </a>

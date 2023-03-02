@@ -36,7 +36,7 @@
 .left-section {
     font-size: 40px;
     color: white;
-    flex: 1.5;
+    flex: 1;
 }
 
 .middle-section {
@@ -44,10 +44,10 @@
     color: white;
     display: flex;
     align-items: center;
-    flex: 1.5;
+    flex: 1;
 }
 
-.right-section-1 {
+.right-section {
     font-size: 40px;
     color: white;
     display: flex;
@@ -55,18 +55,7 @@
     align-items: center;
     justify-content: right;
     width: 100px;
-    flex: 0.5;
-}
-
-.right-section-2 {
-    font-size: 40px;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: right;
-    width: 100px;
-    flex: 0.4;
+    flex: 1;
 }
 
 body {
@@ -240,18 +229,11 @@ a:active {
 @media (max-width: 1100px) {
     .navbar {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        height: 230px;
+        grid-template-columns: 1fr;
+        height: 470px;
     }
-    .right-section-1 {
-        width: 100px;
-        margin-top: -10px;
-        margin-left: 300px;
-    }
-    .right-section-2 {
-        width: 400px;
-        margin-top: -10px;
-        margin-left: 150px;
+    .right-section {
+        margin-left: 900px;
     }
     .request-icon {
         height: 90px;
@@ -273,22 +255,27 @@ a:active {
         margin-left: 40px;
     }
     .search-button-image {
-        width: 90px;
-        height: 90px;
-    }
-    body {
-        padding-top: 300px;
-    }
-    .navbar-background {
-        height: 260px;
+        width: 100px;
+        height: 100px;
     }
     .search-bar {
-        height: 70px;
-        width: 600px;
+        height: 130px;
+        max-width: 900px;
+        padding-top: 15px;
     }
     .logo {
-        width: 350px;
-        height: 45px;
+        width: 1100px;
+        height: 100px;
         object-fit: contain;
+    }
+    .search-bar::placeholder {
+        font-size: 50px;
+    }
+    .search-bar:focus {
+        font-size: 50px;
+        padding-top: 0px;
+    }
+    body {
+        padding-top: 550px;
     }
 }
