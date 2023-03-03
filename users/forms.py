@@ -64,13 +64,14 @@ class MessageroomForm(ModelForm):
 class ActiveProjectForm(ModelForm):
   class Meta:
     model = Project
-    fields = ['title','description', 'body', 'meeting_link', 'documents_link']
+    fields = ['title','description', 'body', 'meeting_link', 'documents_link', 'meeting_time']
     widgets = {
       'title': forms.TextInput,
       'description': forms.TextInput,
       'body': forms.TextInput,
       'meeting_link': forms.TextInput,
-      'documents_link': forms.TextInput
+      'documents_link': forms.TextInput,
+      'meeting_time': forms.TextInput
     }
 
   def __init__(self, *args, **kwargs):
@@ -80,6 +81,7 @@ class ActiveProjectForm(ModelForm):
     self.fields['body'].required = False
     self.fields['meeting_link'].required = False
     self.fields['documents_link'].required = False
+    self.fields['meeting_time'].required = False
 
     for name, field in self.fields.items():
       self.fields['title'].widget.attrs.update({'class':'edit-project-input', 'required':'False', 'type':'text', 'name':'text', 'autocomplete':'off'})
@@ -87,6 +89,7 @@ class ActiveProjectForm(ModelForm):
       self.fields['body'].widget.attrs.update({'class':'edit-project-input', 'required':'False', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['meeting_link'].widget.attrs.update({'class':'edit-project-input', 'required':'False', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['documents_link'].widget.attrs.update({'class':'edit-project-input', 'required':'False', 'type':'text', 'name':'text', 'autocomplete':'off'})
+      self.fields['meeting_time'].widget.attrs.update({'class':'edit-project-input', 'required':'False', 'type':'text', 'name':'text', 'autocomplete':'off'})
 
 
 

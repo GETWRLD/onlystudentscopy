@@ -79,7 +79,7 @@ class Project(models.Model):
   description = models.TextField(null=True, blank=True, default="")
   featured_image = models.ImageField(null=True, blank=True, default="default.jpg")
   demo_link = models.CharField(max_length=2000, null=True, blank=True, default="Demo Link")
-  source_link = models.CharField(max_length=200, null=True, blank=True, default="Source Link")
+  source_link = models.CharField(max_length=2000, null=True, blank=True, default="Source Link")
   subject = models.ForeignKey(Subject, blank=True, on_delete=models.CASCADE)
   created = models.DateTimeField(auto_now_add=True)
   id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
@@ -87,8 +87,9 @@ class Project(models.Model):
   is_accepted = models.BooleanField(default=False, null=True)
   private = models.BooleanField(default=True, null=True)
   body = models.TextField(null=True, blank=True, default="Body")
-  meeting_link = models.CharField(max_length=200, blank=True, null=True, default="Meeting Link")
+  meeting_link = models.CharField(max_length=500, blank=True, null=True, default="Meeting Link")
   documents_link = models.TextField(null=True, blank=True, default="Documents Link")
+  meeting_time = models.CharField(max_length=500, blank=True, null=True, default="Meeting Time")
 
 
   def __str__(self):
