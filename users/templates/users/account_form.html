@@ -6,17 +6,103 @@
 <div class="account-form-background">
     <form class="account-form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {% for field in form %}
-        <div class="account-form-field">
-            <label>
-                {{field.name}}
-            </label>
-            {{field}}
+        <div class="account-box">
+            <div class="account-list-background">
+                <div class="account-list-2">
+                    <div class="account-list">
+                        <img class="account-image-3" src="{{account.imageURL}}">
+                        <div class="account-fields">                           
+                            <div class="account-field">
+                                <div class="account-input-group">
+                                    {{form.username}}
+                                    <label class="account-label">Username</label>
+                                </div>
+                            </div>
+                            <div class="account-field">
+                                <div class="account-input-group">
+                                    {{form.location}}
+                                    <label class="account-label">Location</label>
+                                </div>
+                            </div>
+                            <div class="account-field">
+                                <div class="account-input-group">
+                                    {{form.short_intro}}
+                                    <label class="account-label">Short Intro</label>
+                                </div>
+                            </div>
+                            <div class="account-field">
+                                <div class="account-input-group">
+                                    {{form.bio}}
+                                    <label class="account-label">Bio</label>
+                                </div>
+                            </div>
+                            <div class="account-field">
+                                <div class="profile-image-form">
+                                    {{form.profile_image}}
+                                </div>
+                            </div>
+                            <div class="account-field">
+                                <div class="account-input-group">
+                                    {{form.social_instagram}}
+                                    <label class="account-label">Instagram</label>
+                                </div>
+                            </div>
+                            <div class="account-field">
+                                <div class="account-input-group">
+                                    {{form.social_twitter}}
+                                    <label class="account-label">Twitter</label>
+                                </div>
+                            </div>
+                            <div class="account-field">
+                                <div class="account-input-group">
+                                    {{form.social_linkedin}}
+                                    <label class="account-label">Linkedin</label>
+                                </div>
+                            </div>
+                            <div class="account-field">
+                                <div class="account-input-group">
+                                    {{form.social_youtube}}
+                                    <label class="account-label">Youtube</label>
+                                </div>
+                            </div>
+                            <div class="account-field">
+                                <div class="account-input-group">
+                                    {{form.social_website}}
+                                    <label class="account-label">Website</label>
+                                </div>
+                            </div>
+                            <div class="account-field">
+                                <div class="account-input-group">
+                                    {{form.social_vk}}
+                                    <label class="account-label">VK</label>
+                                </div>
+                            </div>
+                            <div class="account-field">
+                                <div class="account-input-group">
+                                    {{form.social_telegram}}
+                                    <label class="account-label">Telegram</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="account-buttons">
+                    <a class="account-submit-form-button" href="">
+                      <button class="account-submit-form-button">
+                        <div class="svg-wrapper-1">
+                          <div class="svg-wrapper">
+                            <svg class="arrow" viewBox="0 0 24 24" width="24" height="24">
+                              <path fill="none" d="M0 0h24v24H0z"></path>
+                              <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                            </svg>
+                          </div>
+                        </div>
+                        <span>Submit</span>
+                      </button>
+                    </a>
+                </div>
+            </div>
         </div>
-        {% endfor %}
-        <button class="account-form-btn">
-            Submit
-        </button>
     </form>
 </div>
 {% endblock content %}

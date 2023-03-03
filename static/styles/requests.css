@@ -93,6 +93,24 @@
     margin-bottom: 50px;
 }
 
+@media (max-width: 1100px) {
+    .buttons-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .button-2 {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 30px;
+    }
+    .request {
+        font-size: 70px;
+    }
+    .requests-list-last-project {
+        font-size: 50px;
+    }
+}
+
 
 
 

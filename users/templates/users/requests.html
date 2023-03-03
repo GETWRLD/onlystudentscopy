@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="requests-background">
-    <div class="buttons-1">
+    <div class="buttons-2">
         <div class="button-2">
             <a href="{% url 'pendingprojects' request.user.profile.id %}">
                 <button class="default-btn">
@@ -25,14 +25,12 @@
             </a>
         </div>
         {% if request.user.profile.role != 'student' %}
-        <div class="button-1">
-            <div class="button-2">
-                <a href="{% url 'projectsasmentor' request.user.profile.id %}">
-                    <button class="default-btn">
-                        As mentor
-                    </button>
-                </a>
-            </div>
+        <div class="button-2">
+            <a href="{% url 'projectsasmentor' request.user.profile.id %}">
+                <button class="default-btn">
+                    As mentor
+                </button>
+            </a>
         </div>
         {% endif %}
         <div class="button-2">

@@ -4,9 +4,9 @@
 
 {% block content %}
 
-<div class="requests-box">
-    <div class="requests-list-background">
-        <div class="requests-list">
+<div class="request-box">
+    <div class="request-list-background">
+        <div class="request-list">
             {% if onerequest.is_accepted %}
                 {% if onerequest.is_completed %}
                 <div class="project-finished">
@@ -43,7 +43,7 @@
                             {% for field in active_project_form %}
                             <div class="project-field">
                                 {{field}}
-                                <label class="user-label">{{field.label}}</label>
+                                <label class="project-label">{{field.label}}</label>
                             </div>
                             {% endfor %}
                         </div>
