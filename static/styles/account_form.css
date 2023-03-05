@@ -64,6 +64,25 @@
     align-items: center;
 }
 
+.account-field-3 {
+  background-color: rgb(70, 70, 70);
+  padding: 15px;
+  max-width: 970px;
+  border-radius: 10px;
+  min-width: 100px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100px;
+}
+
+.account-subjects-input {
+  height: 15px;
+  width: 50px;
+}
+
 .account-background {
     background-color: rgb(70, 70, 70);
 }
@@ -250,5 +269,15 @@
     
     .account-submit-form-button:active {
       transform: scale(0.95);
+    }
+    .account-subjects-input {
+      height: 50px;
+      width: 50px;
+    }
+    .account-field-3 {
+      min-height: 100px;
+      font-size: 50px;
+      display: flex;
+      flex-direction: column;
     }
 }

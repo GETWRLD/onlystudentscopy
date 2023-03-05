@@ -3,30 +3,6 @@
 {% block content %}
 
 {% if page == 'register' %}
-<div class="registration-background">
-    <h3>Account Sign Up</h3>
-    <p>Hello Developer, Welcome Back!</p>
-    <form method="POST" action="{% url 'register' %}" class="register-form">
-        {% csrf_token %}
-
-        {% for field in form %}
-            <div class="field">
-                <label class="field-label">{{field.label}}</label>
-                <div class="field-enter">
-                    {{field}}
-                </div>
-            </div>
-        {% endfor %}
-        <div class="auth_actions">
-            <button class="auth_button">Sign Up</button>
-            <div class="auth_alternative">
-                <p>Already have an account?</p>
-                <a href="{% url 'login' %}">Log In</a>
-            </div>
-        </div>
-    </form>
-</div>
-
 
 <form action="{% url 'register' %}" method="POST" class="login-form">
     {% csrf_token %}

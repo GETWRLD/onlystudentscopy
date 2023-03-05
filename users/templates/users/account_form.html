@@ -44,44 +44,13 @@
                             <div class="account-field-2">
                                 <div class="account-input-group">
                                     {{form.social_instagram}}
-                                    <label class="account-label">Instagram</label>
+                                    <label class="account-label">Social Network</label>
                                 </div>
                             </div>
-                            <div class="account-field-2">
-                                <div class="account-input-group">
-                                    {{form.social_twitter}}
-                                    <label class="account-label">Twitter</label>
-                                </div>
-                            </div>
-                            <div class="account-field-2">
-                                <div class="account-input-group">
-                                    {{form.social_linkedin}}
-                                    <label class="account-label">Linkedin</label>
-                                </div>
-                            </div>
-                            <div class="account-field-2">
-                                <div class="account-input-group">
-                                    {{form.social_youtube}}
-                                    <label class="account-label">Youtube</label>
-                                </div>
-                            </div>
-                            <div class="account-field-2">
-                                <div class="account-input-group">
-                                    {{form.social_website}}
-                                    <label class="account-label">Website</label>
-                                </div>
-                            </div>
-                            <div class="account-field-2">
-                                <div class="account-input-group">
-                                    {{form.social_vk}}
-                                    <label class="account-label">VK</label>
-                                </div>
-                            </div>
-                            <div class="account-field-2">
-                                <div class="account-input-group">
-                                    {{form.social_telegram}}
-                                    <label class="account-label">Telegram</label>
-                                </div>
+                            <div class="account-field-3">
+                                {% for subject in form.subjects %}
+                                {{subject}}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>

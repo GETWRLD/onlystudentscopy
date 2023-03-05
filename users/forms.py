@@ -172,6 +172,8 @@ class MentorAccountForm(ModelForm):
       self.fields['social_vk'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['social_telegram'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['profile_image'].widget.attrs.update({'class':'account-image-input'})
+      self.fields['subjects'].widget.attrs.update({'class':'account-subjects-input'})
+
 
 
 class TeacherAccountForm(ModelForm):
