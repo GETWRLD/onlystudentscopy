@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
-from .models import Profile, Project, Review, Messageroom, Skill
-from .forms import CustomUserCreationForm, ProjectForm, MessageForm, MessageroomForm, ActiveProjectForm, StudentAccountForm, MentorApplyForm, TeacherApplyForm, MentorAccountForm, TeacherAccountForm, ProjectReviewForm
+from .models import Profile, Project, Review, Messageroom, Skill, Teacher
+from .forms import CustomUserCreationForm, ProjectForm, MessageForm, MessageroomForm, ActiveProjectForm, StudentAccountForm, MentorApplyForm, TeacherApplyForm, MentorAccountForm, TeacherAccountForm, ProjectReviewForm, ApplyTeacherRequest
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from projects.models import Subject
+from .utils import searchprofiles
 
 def registerUser(request):
     page = 'register'
@@ -69,10 +70,14 @@ def logoutUser(request):
 def mentors(request, pk):
     subject = Subject.objects.get(title=pk)
     profiles = Profile.objects.filter(subjects=subject)
+    profiles_search = searchprofiles(request)
+    page = 'mentors'
 
     context = {
         'profiles': profiles,
-        'subject': subject
+        'subject': subject,
+        'page': page,
+        'profiles_search': profiles_search
     }
 
     return render(request, 'users/subject_mentors.html', context)
@@ -274,9 +279,13 @@ def projectreview(request, pk):
 
 def allmentors(request):
     profiles = Profile.objects.all()
+    page = 'allmentors'
+    profiles_search = searchprofiles(request)
 
     context = {
-        'profiles': profiles
+        'profiles': profiles,
+        'page': page,
+        'profiles_search': profiles_search
     }
 
     return render(request, 'users/allmentors.html', context)
@@ -510,31 +519,36 @@ def applyformentor(request):
 
 def applyforteacher(request):
     page = 'teacher'
-    teacherform = TeacherApplyForm()
     user = request.user.profile
+    form = TeacherApplyForm
 
     if request.method == 'POST':
-        teacherform = TeacherApplyForm(request.POST)
-        if teacherform.is_valid():
-            teacher = teacherform.save(commit=False)
-            teacher.owner = user
-            teacher.save()
-
-            return redirect('subjects')
+        form = TeacherApplyForm(request.POST)
+        if form.is_valid():
+            teacher = ApplyTeacherRequest.objects.create(owner=user)
+            
 
     context = {
         'user': user,
-        'teacherform': teacherform,
-        'page': page
+        'page': page,
+        'form': form
     }
 
     return render(request, 'users/applyforrole.html', context)
 
 
+def students_list(request):
+    teacherr = request.user.teacher
+    students = teacherr.students.all()
+    context = {
+        'students': students
+    }
+
+    return render(request, 'users/students_list.html', context)
 
 
+def confidential_policy(request):
 
-
-
+    return render(request, 'users/confidential_policy.html')
 
 

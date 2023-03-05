@@ -17,39 +17,77 @@
     <div class="mentors-box">
         <div class="mentors-list-background">
             <div class="mentors-list">
-                {% for profile in profiles %}
-                <div class="subject-mentor-link-background">
-                    <div class="subject-mentor-link"> 
-                        <a class="subject-mentor-link-2" href="{% url 'profile' profile.username %}">
-                            <div class="profile-image">
-                                <img class="profile-image-2" src="{{profile.imageURL}}">
-                            </div>
-                            <div class="profile-description">
-                                <div class="profile-description-name">{{profile.username}}</div>
-                                {% if profile.classs %}
-                                <div class="profile-description-classs">
-                                    <p class="profile-description-classs-label">Form:</p>
-                                    {{profile.classs}}
+                {% if profiles_search %}
+                    {% for profile in profiles_search %}
+                    <div class="subject-mentor-link-background">
+                        <div class="subject-mentor-link"> 
+                            <a class="subject-mentor-link-2" href="{% url 'profile' profile.username %}">
+                                <div class="profile-image">
+                                    <img class="profile-image-2" src="{{profile.imageURL}}">
                                 </div>
-                                {% endif %}
-                                {% if profile.short_intro %}
-                                <div class="profile-description-bio">{{profile.short_intro|slice:"60"}}</div>
-                                {% endif %}
-                                <div class="profile-description-votes">
-                                    <div class="profile-description-vote">
-                                        <p class="profile-description-vote-label">Students helped:</p>
-                                        {{profile.vote_total}}
+                                <div class="profile-description">
+                                    <div class="profile-description-name">{{profile.username}}</div>
+                                    {% if profile.classs %}
+                                    <div class="profile-description-classs">
+                                        <p class="profile-description-classs-label">Form:</p>
+                                        {{profile.classs}}
                                     </div>
-                                    <div class="profile-description-vote">
-                                        <p class="profile-description-vote-label">Rating:</p>
-                                        {{profile.vote_ratio}}
+                                    {% endif %}
+                                    {% if profile.short_intro %}
+                                    <div class="profile-description-bio">{{profile.short_intro|slice:"60"}}</div>
+                                    {% endif %}
+                                    <div class="profile-description-votes">
+                                        <div class="profile-description-vote">
+                                            <p class="profile-description-vote-label">Students helped:</p>
+                                            {{profile.vote_total}}
+                                        </div>
+                                        <div class="profile-description-vote">
+                                            <p class="profile-description-vote-label">Rating:</p>
+                                            {{profile.vote_ratio}}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                {% endfor %}
+                    {% endfor %}
+                {% else %}
+                    {% for profile in profiles %}
+                    {% if profile.role == 'mentor' %}
+                    <div class="subject-mentor-link-background">
+                        <div class="subject-mentor-link"> 
+                            <a class="subject-mentor-link-2" href="{% url 'profile' profile.username %}">
+                                <div class="profile-image">
+                                    <img class="profile-image-2" src="{{profile.imageURL}}">
+                                </div>
+                                <div class="profile-description">
+                                    <div class="profile-description-name">{{profile.username}}</div>
+                                    {% if profile.classs %}
+                                    <div class="profile-description-classs">
+                                        <p class="profile-description-classs-label">Form:</p>
+                                        {{profile.classs}}
+                                    </div>
+                                    {% endif %}
+                                    {% if profile.short_intro %}
+                                    <div class="profile-description-bio">{{profile.short_intro|slice:"60"}}</div>
+                                    {% endif %}
+                                    <div class="profile-description-votes">
+                                        <div class="profile-description-vote">
+                                            <p class="profile-description-vote-label">Students helped:</p>
+                                            {{profile.vote_total}}
+                                        </div>
+                                        <div class="profile-description-vote">
+                                            <p class="profile-description-vote-label">Rating:</p>
+                                            {{profile.vote_ratio}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>

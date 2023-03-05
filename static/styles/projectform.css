@@ -1,0 +1,140 @@
+.project-input-group {
+ position: relative;
+ width: 100%;
+}
+
+.project-form-input {
+ border: solid 1.5px #9e9e9e;
+ border-radius: 1rem;
+ background: none;
+ padding: 1rem;
+ font-size: 1rem;
+ color: #f5f5f5;
+ transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+ width: 500px;
+ height: 50px;
+ margin-bottom: 20px;
+}
+
+.project-input-label {
+ position: absolute;
+ left: 15px;
+ color: #e8e8e8;
+ pointer-events: none;
+ transform: translateY(1rem);
+ transition: 150ms cubic-bezier(0.4,0,0.2,1);
+}
+
+.project-form-input:focus, .project-form-input:valid {
+ outline: none;
+ border: 1.5px solid #1a73e8;
+}
+
+.project-form-input:focus ~ .project-input-label, input:valid ~ .project-input-label {
+ transform: translateY(-50%) scale(0.8);
+ background-color: #212121;
+ padding: 0 .2em;
+ color: #2196f3;
+}
+
+.project-form-subject {
+    height: 30px;
+    font-size: 15px;
+}
+
+
+
+
+.projectform-button {
+    font-family: inherit;
+    font-size: 20px;
+    background: rgb(0, 170, 180);
+    color: white;
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.2s;
+    margin-bottom: 10px;
+    width: 200px;
+    transition: width 0.3s;
+    margin-right: 20px;
+    margin-top: 30px;
+  }
+  
+  .projectform-button:hover {
+      width: 300px;
+  }
+  
+  .projectform-button span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .projectform-button svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .projectform-button:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+  }
+  
+  .projectform-button:hover svg {
+    transform: translateX(2em) rotate(45deg) scale(1.1);
+  }
+  
+  .projectform-button:hover span {
+    transform: translateX(2.5em);
+  }
+  
+  .projectform-button:active {
+    transform: scale(0.95);
+  }
+
+@media (max-width: 1100px) {
+    .project-form-input {
+        width: 95%;
+        font-size: 50px;
+        height: 100px;
+    }
+    .project-input-label {
+        font-size: 30px;
+    }
+    .project-form-subject {
+        font-size: 40px;
+        height: 50px;
+    }
+    .project-input-subject {
+        font-size: 30px;
+        height: 50px;
+        margin-bottom: 100px;
+    }
+    .projectform-button {
+      font-size: 40px;
+      width: 400px;
+    }
+    .projectform-button:hover {
+      width: 400px;
+    }
+    .projectform-button:hover .svg-wrapper {
+      animation: fly-1 0.6s ease-in-out infinite alternate;
+    }
+    
+    .projectform-button:hover svg {
+      transform: translateX(0em) rotate(45deg) scale(1.1);
+    }
+    
+    .projectform-button:hover span {
+      transform: translateX(0em);
+    }
+    
+    .projectform-button:active {
+      transform: scale(0.95);
+    }
+}

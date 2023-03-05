@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Project, Review, Message, Messageroom, Skill, ApplyTeacherRequest
+from .models import Profile, Project, Review, Message, Messageroom, Skill, ApplyTeacherRequest, Teacher
 
 admin.site.register(Profile)
 admin.site.register(Project)
@@ -8,3 +8,4 @@ admin.site.register(Message)
 admin.site.register(Messageroom)
 admin.site.register(Skill)
 admin.site.register(ApplyTeacherRequest)
+admin.site.register(Teacher)

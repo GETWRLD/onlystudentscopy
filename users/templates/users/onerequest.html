@@ -72,14 +72,14 @@
                 <div class="request-subject">
                     {{onerequest.subject}}
                 </div>
-                {% if onerequest.mentor == request.user.profile %}
+                
                 <div class="is-accepted">
                     <form method="POST" class="project_accept_form">
                         {% csrf_token %}
                         <button class="accept-request" name="accept_request">Accept Request</button>
                     </form>
                 </div>
-                {% endif %}
+                
             {% endif %}
         </div>
     </div>

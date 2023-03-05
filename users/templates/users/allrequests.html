@@ -4,18 +4,30 @@
 
 {% block content %}
 
-<div class="allrequests">
-    {% for project in projects %}
-    {% if project.is_completed == False%}
-    {% if project.is_accepted == False  %}
-    <div class="request2">
-        <a class="public-request-link" href="{% url 'onerequest' project.id %}">
-            {{project}}
-        </a>
+<p class="explanation-allrequests">Public recuests will appear here</p>
+<div class="requests-box">
+    <div class="requests-list-background">
+        <div class="requests-list">
+            {% for project in projects %}
+            {% if project.is_completed == False%}
+            {% if project.is_accepted == False  %}
+                <div class="request-background">
+                    <div class="request-name">
+                        <a href="{% url 'onerequest' project.id %}" class="request-link">
+                            <div class="request">
+                                {{project.title}}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            <div class="requests-list-last-project">
+                No More Requests
+            </div> 
+        </div>
     </div>
-    {% endif %}
-    {% endif %}
-    {% endfor %}
 </div>
 
 {% endblock content %}

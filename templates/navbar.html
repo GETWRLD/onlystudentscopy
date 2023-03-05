@@ -6,22 +6,31 @@
                 <img class="logo" src="{% static 'styles/logo_small.png' %}">
             </a>
         </div>
+        {% if page == 'mentors' or page == 'allmentors' %}
         <div class="middle-section">
-            <input class="search-bar" type="text" placeholder="Search">
-            <button class="search-button">
-                <img class="search-button-image" src="{% static 'styles/loupe.png' %}">
-            </button>
+            <form id="searchform" class="searchform" method="get">
+                <div class="search-input-group">
+                    <input required="" autocomplete="off" class="search-bar" type="text" name="search_query">
+                    <label class="search-bar-label">Find a mentor</label>
+                </div>
+                <button class="search-button">
+                    <img class="search-button-image" src="{% static 'styles/loupe.png' %}">
+                </button>
+            </form>
         </div>
+        {% endif %}
         <div class="right-section">
             {% if request.user.is_authenticated %}
+                {% if request.user.profile.role != 'teacher' %}
                 <div>
                     <a href="{% url 'requests' request.user.profile.id %}"><img class="request-icon" src="{% static 'styles/mail.png' %}"></a>
                 </div>
+                {% endif %}
                 {% if request.user.profile.role == 'teacher' %}
                 <div>
-                    <a href="{% url 'mentorsstats' %}"><img class="request-icon" src="{% static 'styles/mail.png' %}"></a>
+                    <a href="{% url 'studentslist' %}"><img class="mentors-icon" src="{% static 'styles/mentors.png' %}"></a>
                 </div>
-            {% endif %}
+                {% endif %}
             <a class="message-icon-a" href="{% url 'messageroomslist' %}">
                 <img class="message-icon" src="{% static 'styles/email.png' %}">
             </a>

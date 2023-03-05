@@ -4,6 +4,18 @@ import uuid
 from projects.models import Subject
     
 
+class Teacher(models.Model):
+  user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+  name = models.CharField(max_length=200, blank=True, null=True)
+  email = models.EmailField(max_length=500, blank=True, null=True)
+  created = models.DateTimeField(auto_now_add=True)
+  id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+  students = models.ManyToManyField('Profile', blank=True)
+
+  def __str__(self):
+      return str(self.name)
+
+
 class Profile(models.Model):
   ROLE_TYPE = (
     ('mentor', 'Mentor'),
@@ -33,6 +45,7 @@ class Profile(models.Model):
   vote_ratio = models.IntegerField(default=0, null=True, blank=True)
   role = models.CharField(max_length=200, choices=ROLE_TYPE, default='student')
   skill = models.ManyToManyField('Skill', blank=True)
+  teachers = models.ManyToManyField(Teacher, blank=True)
 
   def __str__(self):
       return str(self.username)
@@ -167,7 +180,8 @@ class ApplyTeacherRequest(models.Model):
   owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
   id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
   created = models.DateTimeField(auto_now_add=True)
-  reason = models.TextField(blank=True, null=True)
+  school = models.CharField(max_length=500, blank=True, null=True)
+  email = models.CharField(max_length=500, blank=True, null=True)
 
   def __str__(self):
     return str(self.owner)

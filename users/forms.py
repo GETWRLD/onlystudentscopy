@@ -36,8 +36,9 @@ class ProjectForm(ModelForm):
       super(ProjectForm, self).__init__(*args, **kwargs)
   
       for name, field in self.fields.items():
-        self.fields['title'].widget.attrs.update({'class':'message-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
-        self.fields['description'].widget.attrs.update({'class':'message-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
+        self.fields['title'].widget.attrs.update({'class':'project-form-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
+        self.fields['description'].widget.attrs.update({'class':'project-form-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
+        self.fields['subject'].widget.attrs.update({'class':'project-form-subject', 'required':''})
 
 
 class MessageForm(ModelForm):
@@ -176,9 +177,7 @@ class MentorAccountForm(ModelForm):
 class TeacherAccountForm(ModelForm):
   class Meta:
     model = Profile
-    fields = ['username', 'location', 'short_intro', 'bio', 'profile_image', 
-    'social_instagram', 'social_twitter', 'social_linkedin', 'social_youtube', 
-    'social_website', 'social_vk', 'social_telegram', 'subjects']
+    fields = ['username', 'short_intro', 'bio', 'profile_image', 'subjects']
 
     widgets = {
       'subjects': forms.CheckboxSelectMultiple
@@ -200,7 +199,7 @@ class MentorApplyForm(ModelForm):
 class TeacherApplyForm(ModelForm):
   class Meta:
     model = ApplyTeacherRequest
-    fields = ['reason']
+    fields = ['school', 'email']
 
 
 class ProjectReviewForm(ModelForm):

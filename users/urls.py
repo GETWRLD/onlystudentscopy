@@ -25,8 +25,9 @@ urlpatterns = [
     path('messageroom/<str:pk>/', views.messageroom, name='messageroom'),
     path('account/', views.account, name='account'),
     path('edit-account/', views.editaccount, name='edit-account'),
-    path('mentors-stats/', views.mentorsstats, name='mentorsstats'),
     path('apply-for-mentor/', views.applyformentor, name='applyformentor'),
-    path('apply-for-teacher/', views.applyforteacher, name='applyforteacher'),
+    #path('apply-for-teacher/', views.applyforteacher, name='applyforteacher'),
     path('publicprojectform/<str:pk>/', views.createpublicrequest, name='createpublicrequest'),
+    #path('students-list/', views.students_list, name='studentslist')
+    path('confidentialpolicy/', views.confidential_policy, name='confidentialpolicy')
 ]

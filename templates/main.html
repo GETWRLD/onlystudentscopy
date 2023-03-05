@@ -24,11 +24,14 @@
         <link rel="stylesheet" href="{% static 'styles/mentorstats.css' %}">
         <link rel="stylesheet" href="{% static 'styles/applyforrole.css' %}">
         <link rel="stylesheet" href="{% static 'styles/projectreview.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/students_list.css' %}">
     </head>
     <body>
         {% include 'navbar.html' %}
-        {% block content %}
-        {% endblock content %}
+        <div>
+            {% block content %}
+            {% endblock content %}
+        </div>
         <footer class="footer">
             {% include 'footer.html' %}
         </footer>

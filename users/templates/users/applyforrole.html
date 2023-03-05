@@ -4,42 +4,20 @@
 
 {% block content %}
 
-{% if page == 'mentor' %}
-<div class="apply-background">
-    <form class="apply-mentor-form" method="POST">
-        {% csrf_token %}
-        Apply for mentor
-        <button class="apply-mentor-form-btn" name="apply-mentor-form-btn">
-            Apply
-        </button>
-    </form>
+<div class="apply-box">
+    <div class="apply-background">
+        <div class="apply-form">
+            {% if page == 'mentor' %}
+                <form class="apply-mentor-form" method="POST">
+                    {% csrf_token %}
+                    Apply for mentor
+                    <button class="apply-mentor-form-btn" name="apply-mentor-form-btn">
+                        Apply
+                    </button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
 </div>
-<div class="apply-teacher">
-    Are you a teacher?
-</div>
-<a class="apply-teacher-link" href="{% url 'applyforteacher' %}">
-    <button class="apply-teacher-btn">
-         Apply for Teacher
-    </button>
-</a>
-{% elif page == 'teacher' %}
-<div class="apply-background">
-    <form class="apply-teacher-form" method="POST">
-        {% csrf_token %}
-        {% for field in teacherform %}
-        {{field.label}}
-        {{field}}
-        {% endfor %}
-        <button class="apply-teacher-form-btn" name="apply-teacher-form-btn">
-            Apply
-        </button>
-    </form>
-</div>
-<a class="apply-mentor-link" href="{% url 'applyformentor' %}">
-    <button class="apply-mentor-btn">
-        Apply for Mentor
-    </button>
-</a>
-{% endif %}
 
 {% endblock content %}

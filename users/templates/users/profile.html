@@ -53,6 +53,7 @@
             </div>
             {% if profile != request.user.profile %}
               <div class="profile-buttons">
+                {% if profile.role == 'mentor' %}
                 <a class="profile-send-request-link" href="{% url 'projectform' profile %}">
                   <button class="profile-send-request-button">
                     <div class="svg-wrapper-1">
@@ -66,6 +67,7 @@
                     <span>Send Request</span>
                   </button>
                 </a>
+                {% endif %}
                 <a class="profile-create-messageroom-link" href="{% url 'createmessageroom' profile %}">
                   <button class="profile-create-messageroom-button">
                     <div class="svg-wrapper-1">

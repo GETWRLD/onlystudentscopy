@@ -82,7 +82,7 @@
  top: 1px;
 }
 
-.review-input:focus, input:valid {
+.review-input:focus, .review-input:valid {
  outline: none;
  border: 1.5px solid #1a73e8;
 }
