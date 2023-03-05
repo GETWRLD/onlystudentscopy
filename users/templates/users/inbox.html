@@ -5,7 +5,7 @@
 {% block content %}
   <main class="inbox-background">
     <div class="content-box">
-      <h3 class="inbox__title">New Messages(<span>{{unreadCount}}</span>)</h3>
+      <h3 class="inbox__title">Новые Сообщения(<span>{{unreadCount}}</span>)</h3>
       <ul class="messages">
         {% for message in messageRequests %}
         {% if message.is_read == False %}

@@ -12,14 +12,14 @@
                         {% csrf_token %}
                         <div class="project-input-group">
                             {{form.title}}
-                          <label class="project-input-label">{{form.title.label}}</label>
+                          <label class="project-input-label">Название</label>
                         </div>
                         <div class="project-input-group">
                             {{form.description}}
-                          <label class="project-input-label">{{form.description.label}}</label>
+                          <label class="project-input-label">Описание</label>
                         </div>
                         <div class="project-input-subject">
-                            <p class="subjectform-label">Select a subject</p> {{form.subject}}
+                            <p class="subjectform-label">Выбери предмет</p> {{form.subject}}
                         </div>
                         <button class="projectform-button">
                           <div class="svg-wrapper-1">
@@ -30,7 +30,7 @@
                               </svg>
                             </div>
                           </div>
-                          <span>Submit</span>
+                          <span>Отправить</span>
                         </button>
                     </form>
                 </div>

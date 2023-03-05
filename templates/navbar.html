@@ -11,7 +11,7 @@
             <form id="searchform" class="searchform" method="get">
                 <div class="search-input-group">
                     <input required="" autocomplete="off" class="search-bar" type="text" name="search_query">
-                    <label class="search-bar-label">Find a mentor</label>
+                    <label class="search-bar-label">Найди Ментора</label>
                 </div>
                 <button class="search-button">
                     <img class="search-button-image" src="{% static 'styles/loupe.png' %}">
@@ -39,11 +39,11 @@
                 <img class="account-icon" src="{% static 'styles/user.png' %}">
             </a>
             <div class="login-logout-button-bg">
-                <a href="{% url 'logout' %}" class="login-logout-button">Log Out</a>
+                <a href="{% url 'logout' %}" class="login-logout-button">Выйти</a>
             </div>
             {% else %}
             <div class="login-logout-button-bg">
-                <a href="{% url 'login' %}" class="login-logout-button">Log In</a>
+                <a href="{% url 'login' %}" class="login-logout-button">Войти</a>
             </div>
             {% endif %}
         </div>

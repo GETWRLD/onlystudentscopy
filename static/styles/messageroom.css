@@ -207,7 +207,7 @@
   
 @media (max-width: 1100px) {
   .messages-list {
-    height: 1300px;
+    height: 1000px;
   }
   .messagerooms-box {
     margin-top: -40px;
@@ -225,6 +225,9 @@
   }
   .message-input-label {
     font-size: 30px;
+  }
+  .send-button {
+    width: 40%;
   }
   .send-button {
     font-size: 40px;
@@ -247,5 +250,9 @@
   
   .send-button:active {
     transform: scale(0.95);
+  }
+  .message-form {
+    display: flex;
+    flex-direction: column;
   }
 }

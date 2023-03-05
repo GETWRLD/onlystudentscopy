@@ -9,7 +9,7 @@
         <div class="button-2">
             <a href="{% url 'pendingprojects' request.user.profile.id %}">
                 <button class="default-btn">
-                    Pending
+                    Ожидание
                 </button>
             </a>
         </div>
@@ -17,7 +17,7 @@
             <a href="{% url 'projectsasstudent' request.user.profile.id %}">
                 <button class="default-btn">
                     {% if request.user.profile.role != 'student' %}
-                    As student
+                    Я Ученик
                     {% elif request.user.profile.role == 'student' %}
                     Active requests
                     {% endif %}
@@ -28,7 +28,7 @@
         <div class="button-2">
             <a href="{% url 'projectsasmentor' request.user.profile.id %}">
                 <button class="default-btn">
-                    As mentor
+                    Я Ментор
                 </button>
             </a>
         </div>
@@ -36,7 +36,7 @@
         <div class="button-2">
             <a href="{% url 'completedprojects' request.user.profile.id %}">
                 <button class="default-btn">
-                    Finished
+                    Завершено
                 </button>
             </a>
         </div>
@@ -56,7 +56,7 @@
                     </div>
                 {% endfor %}
                 <div class="requests-list-last-project">
-                    No More Requests
+                    Больше запросов нет
                 </div> 
             </div>
         </div>

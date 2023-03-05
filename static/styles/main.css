@@ -276,8 +276,8 @@ a:active {
 
 
 .footer {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
     margin-top: 90px;
 }
 
@@ -353,8 +353,7 @@ a:active {
     }
     .right-section {
         width: 910px;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 30px;
     }
     .left-section {
         margin-left: auto;
@@ -397,6 +396,10 @@ a:active {
         max-width: 730px;
         width: 730px;
         padding-top: 15px;
+        font-size: 50px;
+    }
+    .search-bar-label {
+        font-size: 40px;
     }
     .logo {
         width: 900px;

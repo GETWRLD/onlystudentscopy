@@ -7,8 +7,9 @@
 <div class="messageroom-form-background">
     <form class="messageroom-form" method="POST">
         {% csrf_token %}
-        <p>Create messageroom</p>
-        <button>Create</button>
+        <p>Создать чат</p>
+        <button class="messageroom-form-button">Создать</button>
+        <p>(Если, чат уже создан, то он появится в списке чатов)</p>
     </form>
 </div>
 
