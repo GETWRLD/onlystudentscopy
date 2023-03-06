@@ -136,9 +136,12 @@
 @media (max-width: 1100px) {
     .edit-project-input {
         font-size: 40px;
-        height: 70px;
+        min-height: 100px;
         min-width: 700px;
         margin-bottom: 30px;
+        white-space: pre-wrap;
+        padding-top: 70px;
+        height: auto;
     }
     .request-list {
         height: 1000px;
@@ -150,5 +153,8 @@
         font-size: 40px;
         width: 730px;
         margin-bottom: 30px;
+    }
+    .request-list {
+        height: auto;
     }
 }

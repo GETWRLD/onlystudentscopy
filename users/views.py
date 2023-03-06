@@ -147,6 +147,7 @@ def projects(request, pk):
     return render(request, 'users/requests.html', context)
 
 def projects_as_mentor(request, pk):
+    page = 'mentor'
     mentor = Profile.objects.get(id=pk)
     projects = Project.objects.filter(mentor=mentor)
     suitable_projects = []
@@ -155,13 +156,15 @@ def projects_as_mentor(request, pk):
             suitable_projects.append(project)
 
     context = {
-        'projects': suitable_projects
+        'projects': suitable_projects,
+        'page': page
     }
 
     return render(request, 'users/requests.html', context)
 
 
 def projects_as_student(request, pk):
+    page = 'student'
     mentor = Profile.objects.get(id=pk)
     projects = Project.objects.filter(student=mentor)
     suitable_projects = []
@@ -170,13 +173,15 @@ def projects_as_student(request, pk):
             suitable_projects.append(project)
 
     context = {
-        'projects': suitable_projects
+        'projects': suitable_projects,
+        'page': page
     }
 
     return render(request, 'users/requests.html', context)
 
 
 def completed_projects(request, pk):
+    page = 'completed'
     mentor = Profile.objects.get(id=pk)
     projects_mentor = Project.objects.filter(mentor=mentor)
     projects_student = Project.objects.filter(student=mentor)
@@ -189,13 +194,15 @@ def completed_projects(request, pk):
             suitable_projects.append(project)
             
     context = {
-        'projects': suitable_projects
+        'projects': suitable_projects,
+        'page': page
     }
 
     return render(request, 'users/requests.html', context)
 
 
 def pending_projects(request, pk):
+    page = 'pending'
     mentor = Profile.objects.get(id=pk)
     projects_mentor = Project.objects.filter(mentor=mentor)
     projects_student = Project.objects.filter(student=mentor)
@@ -208,7 +215,8 @@ def pending_projects(request, pk):
             suitable_projects.append(project)
 
     context = {
-        'projects': suitable_projects
+        'projects': suitable_projects,
+        'page': page
     }
 
     return render(request, 'users/requests.html', context)

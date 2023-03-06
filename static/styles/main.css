@@ -230,6 +230,54 @@ div {
   transition-property: width, left;
 }
 
+
+
+
+.default-btn-illuminated {
+    font-size: 30px;
+    color: #e1e1e1;
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
+    background: -webkit-linear-gradient(rgb(0, 89, 255), rgb(0, 255, 115));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.default-btn-illuminated:focus,
+.default-btn-illuminated:hover {
+  background: -webkit-linear-gradient(rgb(0, 89, 255), rgb(0, 255, 115));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.default-btn-illuminated:focus:after,
+.default-btn-illuminated:hover:after {
+  width: 100%;
+  left: 0%;
+}
+
+.default-btn-illuminated:after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: -webkit-linear-gradient(rgb(0, 89, 255), rgb(0, 255, 115));
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, left;
+}
+
 .buttons-1 {
   display: flex;
   justify-content: space-around;
@@ -410,6 +458,9 @@ a:active {
         padding-top: 550px;
     }
     .default-btn {
+        font-size: 50px;
+    }
+    .default-btn-illuminated {
         font-size: 50px;
     }
 }

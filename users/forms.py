@@ -8,9 +8,8 @@ from django.utils.safestring import mark_safe
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['first_name', 'email', 'username', 'password1', 'password2']
+        fields = ['email', 'username', 'password1', 'password2']
         labels = {
-            'first_name':'Name'
         }
 
     def __init__(self, *args, **kwargs):
@@ -67,12 +66,12 @@ class ActiveProjectForm(ModelForm):
     model = Project
     fields = ['title','description', 'body', 'meeting_link', 'documents_link', 'meeting_time']
     widgets = {
-      'title': forms.TextInput,
-      'description': forms.TextInput,
-      'body': forms.TextInput,
-      'meeting_link': forms.TextInput,
-      'documents_link': forms.TextInput,
-      'meeting_time': forms.TextInput
+      'title': forms.Textarea,
+      'description': forms.Textarea,
+      'body': forms.Textarea,
+      'meeting_link': forms.Textarea,
+      'documents_link': forms.Textarea,
+      'meeting_time': forms.Textarea
     }
 
   def __init__(self, *args, **kwargs):

@@ -8,13 +8,28 @@
     <div class="buttons-2">
         <div class="button-2">
             <a href="{% url 'pendingprojects' request.user.profile.id %}">
+                {% if page == 'pending' %}
+                <button class="default-btn-illuminated">
+                    Ожидание
+                </button>
+                {% else %}
                 <button class="default-btn">
                     Ожидание
                 </button>
+                {% endif %}
             </a>
         </div>
         <div class="button-2">
             <a href="{% url 'projectsasstudent' request.user.profile.id %}">
+                {% if page == 'student' %}
+                <button class="default-btn-illuminated">
+                    {% if request.user.profile.role != 'student' %}
+                    Я Ученик
+                    {% elif request.user.profile.role == 'student' %}
+                    Active requests
+                    {% endif %}
+                </button>
+                {% else %}
                 <button class="default-btn">
                     {% if request.user.profile.role != 'student' %}
                     Я Ученик
@@ -22,22 +37,35 @@
                     Active requests
                     {% endif %}
                 </button>
+                {% endif %}
             </a>
         </div>
         {% if request.user.profile.role != 'student' %}
         <div class="button-2">
             <a href="{% url 'projectsasmentor' request.user.profile.id %}">
-                <button class="default-btn">
-                    Я Ментор
+                {% if page == 'mentor' %}
+                <button class="default-btn-illuminated">
+                    Я ментор
                 </button>
+                {% else %}
+                <button class="default-btn">
+                    Я ментор
+                </button>
+                {% endif %}
             </a>
         </div>
         {% endif %}
         <div class="button-2">
             <a href="{% url 'completedprojects' request.user.profile.id %}">
+                {% if page == 'completed' %}
+                <button class="default-btn-illuminated">
+                    Завершено
+                </button>
+                {% else %}
                 <button class="default-btn">
                     Завершено
                 </button>
+                {% endif %}
             </a>
         </div>
     </div>
