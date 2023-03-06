@@ -98,10 +98,10 @@ class Project(models.Model):
   is_completed = models.BooleanField(default=False, null=True)
   is_accepted = models.BooleanField(default=False, null=True)
   private = models.BooleanField(default=True, null=True)
-  body = models.TextField(null=True, blank=True, default="Body")
-  meeting_link = models.CharField(max_length=500, blank=True, null=True, default="Meeting Link")
-  documents_link = models.TextField(null=True, blank=True, default="Documents Link")
-  meeting_time = models.CharField(max_length=500, blank=True, null=True, default="Meeting Time")
+  body = models.TextField(null=True, blank=True, default="Объяснение")
+  meeting_link = models.CharField(max_length=500, blank=True, null=True, default="Ссылка на встречу")
+  documents_link = models.TextField(null=True, blank=True, default="Ссылка на гугл докс")
+  meeting_time = models.CharField(max_length=500, blank=True, null=True, default="Время встречи")
 
 
   def __str__(self):

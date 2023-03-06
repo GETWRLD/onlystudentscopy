@@ -14,6 +14,9 @@
                 </div>
                 <div class="project-fields">
                     <div class="project-description">
+                        {{onerequest.mentor}}
+                    </div>
+                    <div class="project-description">
                         {{onerequest.description}}
                     </div>
                     <div class="project-body">
@@ -30,7 +33,17 @@
                     {% if onerequest.mentor != request.user.profile %}
                         <div class="project-review">
                             <a href="{% url 'projectreview' onerequest.id %}">
-                                <button>Review</button>
+                                <button class="account-edit-button">
+                                    <div class="svg-wrapper-1">
+                                      <div class="svg-wrapper">
+                                        <svg class="arrow" viewBox="0 0 24 24" width="24" height="24">
+                                            <path fill="none" d="M0 0h24v24H0z"></path>
+                                            <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                                        </svg>
+                                      </div>
+                                    </div>
+                                    <span>Отправить отзыв</span>
+                                </button>
                             </a>
                         </div>
                     {% endif %}
@@ -40,45 +53,79 @@
                     <form class="project-edit" method="POST">
                         {% csrf_token %}
                         <div class="edit-project-input-group">
-                            {% for field in active_project_form %}
-                            <div class="project-field">
-                                {{field}}
-                                <label class="project-label">{{field.label}}</label>
+                            <div class="onerequest-mentor-2">
+                                <label class="mentor-label">Ментор: </label>
+                                {{onerequest.mentor}}
                             </div>
-                            {% endfor %}
+                            <div class="project-field">
+                                {{active_project_form.title}}
+                                <label class="project-label">Название</label>
+                            </div>
+                            <div class="project-field">
+                                {{active_project_form.description}}
+                                <label class="project-label">Описание</label>
+                            </div>
+                            <div class="project-field">
+                                {{active_project_form.body}}
+                                <label class="project-label">Объяснение</label>
+                            </div>
+                            <div class="project-field">
+                                {{active_project_form.documents_link}}
+                                <label class="project-label">Ссылка на гугл докс</label>
+                            </div>
+                            <div class="project-field">
+                                {{active_project_form.meeting_link}}
+                                <label class="project-label">Ссылка на встречу</label>
+                            </div>
+                            <div class="project-field">
+                                {{active_project_form.meeting_time}}
+                                <label class="project-label">Время встречи</label>
+                            </div>
                         </div>
                         <button class="save-edit-project" name="save-edit-project">
-                            Save
+                            Сохранить
                         </button>
                     </form>
                 </div>
                 <form class="project_finish_form" method="POST">
                     {% csrf_token %}
                     <button class="save-edit-project" name="finish_project">
-                        Finish Project
+                        Завершить запрос
                     </button>
                 </form>
                 {% endif %}
             {% else %}
+            <div class="request-3">
                 <div class="request-student">
-                    {{onerequest.student}}
+                    От: {{onerequest.student}}
                 </div>
                 <div class="request-title">
-                    {{onerequest.title}}
+                    Название: {{onerequest.title}}
                 </div>
                 <div class="request-description">
-                    {{onerequest.description}}
+                    Описание: {{onerequest.description}}
                 </div>
                 <div class="request-subject">
-                    {{onerequest.subject}}
+                    Предмет: {{onerequest.subject}}
                 </div>
                 
                 <div class="is-accepted">
                     <form method="POST" class="project_accept_form">
                         {% csrf_token %}
-                        <button class="accept-request" name="accept_request">Accept Request</button>
+                        <button class="account-edit-button" name="accept_request">
+                            <div class="svg-wrapper-1">
+                              <div class="svg-wrapper">
+                                <svg class="arrow" viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="none" d="M0 0h24v24H0z"></path>
+                                    <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                                </svg>
+                              </div>
+                            </div>
+                            <span>Принять Запрос</span>
+                        </button>
                     </form>
                 </div>
+            </div>
                 
             {% endif %}
         </div>

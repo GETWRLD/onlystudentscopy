@@ -10,7 +10,6 @@ def searchprofiles(request):
 
     if search_query != '':
         profiles = Profile.objects.distinct().filter(
-            Q(name__icontains=search_query) |
             Q(username__icontains=search_query)
         )
         return profiles
