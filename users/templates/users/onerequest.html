@@ -14,19 +14,22 @@
                 </div>
                 <div class="project-fields">
                     <div class="project-description">
-                        {{onerequest.mentor}}
+                        Ментор: {{onerequest.mentor}}
                     </div>
                     <div class="project-description">
-                        {{onerequest.description}}
+                        Название: {{onerequest.title}}
+                    </div>
+                    <div class="project-description">
+                        Описание: {{onerequest.description}}
                     </div>
                     <div class="project-body">
-                        {{onerequest.body}}
+                        Объяснение: {{onerequest.body}}
                     </div>
                     <div class="project-meeting-link">
-                        {{onerequest.meeting_link}}
+                        Ссылка на встречу: {{onerequest.meeting_link}}
                     </div>
                     <div class="documents-link">
-                        {{onerequest.documents_link}}
+                        Ссылка на гугл докс: {{onerequest.documents_link}}
                     </div>
                 </div>
                 {% if reviewed == False %}

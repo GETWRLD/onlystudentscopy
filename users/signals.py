@@ -5,10 +5,10 @@ from .models import Profile, Teacher
 def createProfile(sender, instance, created, **kwargs):
     if created:
         user = instance
+        print(user)
         profile = Profile.objects.create(user=user,
         username = user.username,
-        email = user.email,
-        name = user.first_name
+        email = user.email
         )
 
 post_save.connect(createProfile, sender=User)

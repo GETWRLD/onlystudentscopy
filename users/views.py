@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from projects.models import Subject
 from .utils import searchprofiles
+from django.core.mail import send_mail
+from django.conf import settings
 
 def registerUser(request):
     page = 'register'
@@ -18,7 +20,18 @@ def registerUser(request):
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
-            print(user)
+            #send_mail(
+            #'Добро пожаловать в OnlyStudents',
+            #'Добро пожаловать в OnlyStudents',
+            #"""Вы зарегистрировались на платформе OnlyStudents.\n 
+            #Сейчас вы ученик, который может только просить помощи.\n 
+            #Зарегистрируйтесь ментором прямо сейчас и помогайте другим!\n
+            #(Форма для получения роли ментора находится внизу главной страницы)\n
+            #Хорошего пользования, команда OnlyStudents""",
+            #settings.EMAIL_HOST_USER,
+            #[user.email],
+            #fail_silently=False,
+            #)
 
             messages.success(request, 'User account was created!')
             return redirect('subjects')
@@ -240,6 +253,13 @@ def oneproject(request, pk):
             onerequest.is_completed = True
             onerequest.save()
             request.user.profile.requests_number
+            #send_mail(
+            #'aaaaaa',
+            #'aaaaaaaaaaaa',
+            #settings.EMAIL_HOST_USER,
+            #[mentor.email],
+            #fail_silently=False,
+            #)
 
         if 'save-edit-project' in request.POST:
             form = ActiveProjectForm(request.POST, instance=Project.objects.get(id=pk))
