@@ -5,6 +5,7 @@
 {% block content %}
 
 <p class="explanation-allrequests">Публичные запросы появляются здесь</p>
+<p class="explanation-allrequests">(их видят все менторы и могут забрать себе)</p>
 <div class="requests-box">
     <div class="requests-list-background">
         <div class="requests-list">
@@ -16,6 +17,9 @@
                         <a href="{% url 'onerequest' project.id %}" class="request-link">
                             <div class="request">
                                 {{project.title}}
+                                {{project.student}}
+                                {{project.student.classs}}
+                                {{project.subject}}
                             </div>
                         </a>
                     </div>

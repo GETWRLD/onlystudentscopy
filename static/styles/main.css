@@ -4,7 +4,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 55px;
+    height: 100px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -67,7 +67,7 @@ body {
 
 .logo {
     margin-top: 8px;
-    height: 35px;
+    height: 90px;
     cursor: pointer;
 }
 
@@ -451,8 +451,9 @@ a:active {
     }
     .logo {
         width: 900px;
-        height: 100px;
+        height: 300px;
         object-fit: contain;
+        margin-bottom: 30px;
     }
     body {
         padding-top: 550px;
@@ -462,5 +463,9 @@ a:active {
     }
     .default-btn-illuminated {
         font-size: 50px;
+    }
+    .footer-button {
+        font-size: 30px;
+        width: 400px;
     }
 }

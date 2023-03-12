@@ -17,6 +17,7 @@
     border-radius: 10px;
     min-width: 700px;
     max-width: 2300px;
+    font-size: 30px;
 }
 
 .apply-background {
@@ -29,4 +30,8 @@
     max-width: 2330px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.apply-mentor-form-btn {
+    font-size: 30px;
 }

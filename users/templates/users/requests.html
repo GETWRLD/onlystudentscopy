@@ -5,6 +5,8 @@
 {% block content %}
 
 <div class="requests-background">
+    <p class="explanation-allrequests">Личные запросы появляются здесь</p>
+    <p class="explanation-allrequests">(которые прислали лично вам)</p>
     <div class="buttons-2">
         <div class="button-2">
             <a href="{% url 'pendingprojects' request.user.profile.id %}">
@@ -78,6 +80,11 @@
                             <a href="{% url 'onerequest' project.id %}" class="request-link">
                                 <div class="request">
                                     {{project.title}}
+                                    {{project.student}}
+                                    {% if project.student.class %}
+                                    {{project.student.classs}}
+                                    {% endif %}
+                                    {{project.subject}}
                                 </div>
                             </a>
                         </div>

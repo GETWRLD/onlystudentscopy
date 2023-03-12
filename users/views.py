@@ -20,18 +20,6 @@ def registerUser(request):
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
-            #send_mail(
-            #'Добро пожаловать в OnlyStudents',
-            #'Добро пожаловать в OnlyStudents',
-            #"""Вы зарегистрировались на платформе OnlyStudents.\n 
-            #Сейчас вы ученик, который может только просить помощи.\n 
-            #Зарегистрируйтесь ментором прямо сейчас и помогайте другим!\n
-            #(Форма для получения роли ментора находится внизу главной страницы)\n
-            #Хорошего пользования, команда OnlyStudents""",
-            #settings.EMAIL_HOST_USER,
-            #[user.email],
-            #fail_silently=False,
-            #)
 
             messages.success(request, 'User account was created!')
             return redirect('subjects')
@@ -238,14 +226,15 @@ def pending_projects(request, pk):
 def oneproject(request, pk):
     onerequest = Project.objects.get(id=pk)
     active_project_form = ActiveProjectForm(instance=onerequest)
-    mentor = request.user
+    mentor = onerequest.mentor
+    student = onerequest.student
     reviewed = False
     if onerequest.review_set.all():
         reviewed = True
 
     if request.method == 'POST':
         if 'accept_request'  in request.POST:
-            onerequest.mentor = mentor.profile
+            onerequest.mentor = request.user.profile
             onerequest.is_accepted = True
             onerequest.save()
 
@@ -253,13 +242,25 @@ def oneproject(request, pk):
             onerequest.is_completed = True
             onerequest.save()
             request.user.profile.requests_number
-            #send_mail(
-            #'aaaaaa',
-            #'aaaaaaaaaaaa',
-            #settings.EMAIL_HOST_USER,
-            #[mentor.email],
-            #fail_silently=False,
-            #)
+
+            send_mail(
+            f'Ваш запрос "{onerequest.title}" был завершен',
+            f"""Запрос "{onerequest.title}", где вы были ментором был завершен \n 
+            Хорошего пользования, команда OnlyStudents""",
+            settings.EMAIL_HOST_USER,
+            [mentor.email],
+            fail_silently=False,
+            )
+
+            send_mail(
+            f'Ваш запрос "{onerequest.title}" был завершен',
+            f"""Ваш запрос "{onerequest.title}" был завершен \n
+            Не забудьте поставить ментору отзыв.\n 
+            Хорошего пользования, команда OnlyStudents""",
+            settings.EMAIL_HOST_USER,
+            [student.email],
+            fail_silently=False,
+            )
 
         if 'save-edit-project' in request.POST:
             form = ActiveProjectForm(request.POST, instance=Project.objects.get(id=pk))
