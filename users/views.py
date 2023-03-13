@@ -9,6 +9,15 @@ from .utils import searchprofiles
 from django.core.mail import send_mail
 from django.conf import settings
 
+
+def error_404(request, exception):
+    return render(request, '404.html')
+
+
+def error_500(request):
+    return render(request, '404.html')
+
+
 def registerUser(request):
     page = 'register'
     form = CustomUserCreationForm()
