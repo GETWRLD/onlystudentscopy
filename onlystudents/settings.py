@@ -28,12 +28,10 @@ SECRET_KEY = 'django-insecure-&g==p_#+zeasg$h9@5=ze9=xvu!4^7w2!sgl6$18w9uvbpbrt^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.onlystudents.help', 'onlystudents.help']
-
-SECURE_SSL_REDIRECT = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_SECONDS = 31536000 # 1 year
-
+ALLOWED_HOSTS = ['www.onlystudents.help', 'onlystudents.help', 'localhost', '127.0.0.1']
+#SECURE_SSL_REDIRECT = False
+#SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+#SECURE_HSTS_SECONDS = 31536000 # 1 year
 
 # Application definition
 
@@ -58,7 +56,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+    #'django.middleware.security.SecurityMiddleware'
 ]
 
 ROOT_URLCONF = 'onlystudents.urls'
