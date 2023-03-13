@@ -30,6 +30,10 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['www.onlystudents.help', 'onlystudents.help']
 
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_SECONDS = 31536000 # 1 year
+
 
 # Application definition
 
@@ -54,6 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.security.SecurityMiddleware',
 ]
 
 ROOT_URLCONF = 'onlystudents.urls'
