@@ -28,10 +28,8 @@ SECRET_KEY = 'django-insecure-&g==p_#+zeasg$h9@5=ze9=xvu!4^7w2!sgl6$18w9uvbpbrt^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.onlystudents.help', 'onlystudents.help', 'localhost', '127.0.0.1']
-SECURE_SSL_REDIRECT = False
-SECURE_HSTS_INCLUDE_SUBDOMAINS = False
-SECURE_HSTS_SECONDS = 31536000 # 1 year
+ALLOWED_HOSTS = ['www.onlystudents.help', 'onlystudents.help', 'localhost', '127.0.0.1:8000']
+
 
 # Application definition
 
@@ -44,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'projects.apps.ProjectsConfig',
     'users.apps.UsersConfig',
+    'sslserver'
 ]
 
 MIDDLEWARE = [
@@ -56,7 +55,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.middleware.security.SecurityMiddleware'
 ]
 
 ROOT_URLCONF = 'onlystudents.urls'
@@ -145,7 +143,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
@@ -153,6 +151,7 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 django_heroku.settings(locals())
 
 # Default primary key field type
