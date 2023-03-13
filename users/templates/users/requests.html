@@ -79,12 +79,20 @@
                         <div class="request-name">
                             <a href="{% url 'onerequest' project.id %}" class="request-link">
                                 <div class="request">
-                                    {{project.title}}
-                                    {{project.student}}
-                                    {% if project.student.class %}
-                                    {{project.student.classs}}
-                                    {% endif %}
-                                    {{project.subject}}
+                                    <div class="request-2">
+                                        <p>Название:</p><p style="display: flex; justify-content: space-around; margin-top: -30px; margin-bottom: 10px;">{{project.title}}</p>
+                                    </div>
+                                    <div class="request-2">
+                                        <p>Ученик: </p><p style="display: flex; justify-content: space-around; margin-top: -30px;">{{project.student}}</p>
+                                    </div>
+                                    <div class="request-2">
+                                        {% if project.student.class %}
+                                        <p>Класс: </p><p style="display: flex; justify-content: space-around; margin-top: -30px;">{{project.student.classs}}</p>
+                                        {% endif %}
+                                    </div>
+                                    <div class="request-2">
+                                        <p>Предмет: </p><p style="display: flex; justify-content: space-around; margin-top: -30px;">{{project.subject}}</p>
+                                    </div>
                                 </div>
                             </a>
                         </div>
