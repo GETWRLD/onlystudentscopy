@@ -123,6 +123,7 @@ class StudentAccountForm(ModelForm):
       self.fields['username'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['location'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['short_intro'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
+      self.fields['bio'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['social_instagram'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['social_twitter'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['social_linkedin'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
@@ -130,6 +131,8 @@ class StudentAccountForm(ModelForm):
       self.fields['social_website'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['social_vk'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['social_telegram'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
+      self.fields['profile_image'].widget.attrs.update({'class':'account-image-input'})
+      self.fields['classs'].widget.attrs.update({'class':'account-classs-input'})
 
 
 class MentorAccountForm(ModelForm):
@@ -172,6 +175,7 @@ class MentorAccountForm(ModelForm):
       self.fields['social_telegram'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['profile_image'].widget.attrs.update({'class':'account-image-input'})
       self.fields['subjects'].widget.attrs.update({'class':'account-subjects-input'})
+      self.fields['classs'].widget.attrs.update({'class':'account-classs-input'})
 
 
 
