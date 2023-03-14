@@ -17,19 +17,19 @@
                         Ментор: {{onerequest.mentor}}
                     </div>
                     <div class="project-description">
-                        Название: {{onerequest.title}}
+                        Название: {{onerequest.title|wordwrap:30|safe}}
                     </div>
                     <div class="project-description">
-                        Описание: {{onerequest.description}}
+                        Описание: {{onerequest.description|wordwrap:30|safe}}
                     </div>
                     <div class="project-body">
-                        Объяснение: {{onerequest.body}}
+                        Объяснение: {{onerequest.body|wordwrap:30|safe}}
                     </div>
                     <div class="project-meeting-link">
-                        Ссылка на встречу: {{onerequest.meeting_link}}
+                        Ссылка на встречу: {{onerequest.meeting_link|wordwrap:30|safe}}
                     </div>
                     <div class="documents-link">
-                        Ссылка на гугл докс: {{onerequest.documents_link}}
+                        Ссылка на гугл докс: {{onerequest.documents_link|wordwrap:30|safe}}
                     </div>
                 </div>
                 {% if reviewed == False %}
@@ -61,27 +61,27 @@
                                 {{onerequest.mentor}}
                             </div>
                             <div class="project-field">
-                                {{active_project_form.title}}
+                                {{active_project_form.title|wordwrap:30|safe}}
                                 <label class="project-label">Название</label>
                             </div>
                             <div class="project-field">
-                                {{active_project_form.description}}
+                                {{active_project_form.description|wordwrap:30|safe}}
                                 <label class="project-label">Описание</label>
                             </div>
                             <div class="project-field">
-                                {{active_project_form.body}}
+                                {{active_project_form.body|wordwrap:30|safe}}
                                 <label class="project-label">Объяснение</label>
                             </div>
                             <div class="project-field">
-                                {{active_project_form.documents_link}}
+                                {{active_project_form.documents_link|wordwrap:30|safe}}
                                 <label class="project-label">Ссылка на гугл докс</label>
                             </div>
                             <div class="project-field">
-                                {{active_project_form.meeting_link}}
+                                {{active_project_form.meeting_link|wordwrap:30|safe}}
                                 <label class="project-label">Ссылка на встречу</label>
                             </div>
                             <div class="project-field">
-                                {{active_project_form.meeting_time}}
+                                {{active_project_form.meeting_time|wordwrap:30|safe}}
                                 <label class="project-label">Время встречи</label>
                             </div>
                         </div>
@@ -103,15 +103,16 @@
                     От: {{onerequest.student}}
                 </div>
                 <div class="request-title">
-                    Название: {{onerequest.title}}
+                    Название: {{onerequest.title|wordwrap:30|safe}}
                 </div>
                 <div class="request-description">
-                    Описание: {{onerequest.description}}
+                    Описание: {{onerequest.description|wordwrap:30|safe}}
                 </div>
                 <div class="request-subject">
-                    Предмет: {{onerequest.subject}}
+                    Предмет: {{onerequest.subject|wordwrap:30|safe}}
                 </div>
                 
+                {% if onerequest.student != request.user.profile %}
                 <div class="is-accepted">
                     <form method="POST" class="project_accept_form">
                         {% csrf_token %}
@@ -128,6 +129,7 @@
                         </button>
                     </form>
                 </div>
+                {% endif %}
             </div>
                 
             {% endif %}
