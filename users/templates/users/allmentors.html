@@ -56,7 +56,7 @@
                                         <div class="profile-description-name">{{profile.username}}</div>
                                         {% if profile.classs %}
                                         <div class="profile-description-classs">
-                                            <p class="profile-description-classs-label">Form:</p>
+                                            <p class="profile-description-classs-label">Класс:</p>
                                             {{profile.classs}}
                                         </div>
                                         {% endif %}
@@ -65,12 +65,13 @@
                                         {% endif %}
                                         <div class="profile-description-votes">
                                             <div class="profile-description-vote">
-                                                <p class="profile-description-vote-label">Students helped:</p>
+                                                <p class="profile-description-vote-label">Помощей ученикам:</p>
                                                 {{profile.vote_total}}
                                             </div>
                                             <div class="profile-description-vote">
-                                                <p class="profile-description-vote-label">Rating:</p>
+                                                <p class="profile-description-vote-label">Рейтинг:</p>
                                                 {{profile.vote_ratio}}
+                                                <p>%</p>
                                             </div>
                                         </div>
                                     </div>
