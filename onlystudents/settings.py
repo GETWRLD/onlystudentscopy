@@ -30,7 +30,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['www.onlystudents.help', 'onlystudents.help', 'localhost', '127.0.0.1:8000']
 
-
 # Application definition
 
 INSTALLED_APPS = [

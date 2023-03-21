@@ -24,7 +24,6 @@ def registerUser(request):
 
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
-        print('a')
         if form.is_valid():
             user = form.save(commit=False)
             user.username = user.username.lower()
@@ -53,6 +52,7 @@ def loginUser(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        username = username.lower()
 
         try:
             user = User.objects.get(username=username)
