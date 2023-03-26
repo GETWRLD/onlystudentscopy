@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-&g==p_#+zeasg$h9@5=ze9=xvu!4^7w2!sgl6$18w9uvbpbrt^
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-#a
+
 
 ALLOWED_HOSTS = ['www.onlystudents.help', 'onlystudents.help', 'localhost', '127.0.0.1:8000']
 
