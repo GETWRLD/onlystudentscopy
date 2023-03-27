@@ -246,6 +246,14 @@ def oneproject(request, pk):
             onerequest.mentor = request.user.profile
             onerequest.is_accepted = True
             onerequest.save()
+            send_mail(
+            f'Ваш запрос "{onerequest.title}" был принят ментором {mentor}',
+            f"""Запрос "{onerequest.title}" был принят ментором. Поспешите проверить его. \n 
+            OnlyStudents""",
+            settings.EMAIL_HOST_USER,
+            [student.email],
+            fail_silently=False,
+            )
 
         if 'finish_project' in request.POST:
             onerequest.is_completed = True
