@@ -515,7 +515,7 @@ def editaccount(request):
        if request.method == 'POST':
            form = MentorAccountForm(request.POST, request.FILES, instance=account)
            if form.is_valid():
-               cloudinary.uploader.upload(form.profile_image)
+               cloudinary.uploader.upload(request.FILES['profile_image'])
                form.save()
                return redirect('account')
 
