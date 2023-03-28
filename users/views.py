@@ -9,6 +9,9 @@ from .utils import searchprofiles
 from django.core.mail import send_mail
 from django.conf import settings
 
+import cloudinary
+from cloudinary import uploader
+
 
 def error_404(request, exception):
     return render(request, '404.html')
@@ -512,6 +515,7 @@ def editaccount(request):
        if request.method == 'POST':
            form = MentorAccountForm(request.POST, request.FILES, instance=account)
            if form.is_valid():
+               cloudinary.uploader.upload(form.profile_image)
                form.save()
                return redirect('account')
 
