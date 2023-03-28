@@ -27,7 +27,7 @@ CLOUDINARY_URL="cloudinary://433573533791923:Mbg1fM_AD6Qdzvt9WeZE-5Ha4ls@hcokj54
 SECRET_KEY = 'django-insecure-&g==p_#+zeasg$h9@5=ze9=xvu!4^7w2!sgl6$18w9uvbpbrt^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = ['www.onlystudents.help', 'onlystudents.help', 'localhost', '127.0.0.1:8000']
