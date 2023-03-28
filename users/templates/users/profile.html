@@ -10,7 +10,7 @@
     <div class="profile-list-background">
         <div class="profile-list-2">
             <div class="profile-list">
-                <img class="profile-image-3" src="{{ cloudinary_url 'profile.image'}}">
+                <img class="profile-image-3" src="{{ cloudinary_url profile.image.public_id}}">
                 <div class="profile-fields">
                     <div class="profile-field">
                         {{profile.username}}
