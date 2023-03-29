@@ -456,7 +456,7 @@ def createmessageroom(request, pk):
                     [user1.email],
                     fail_silently=False,
                     )
-        
+
                     send_mail(
                     f'Чат с "{user1}" был создан',
                     f"""Чат с "{user1}", был создан. Не забывайте проверять его почаще! \n 
@@ -471,7 +471,7 @@ def createmessageroom(request, pk):
             
             return redirect('profile', pk=user2.username)
 
-
+#a
     context = {
     'user2': user2,
     'form': form,
