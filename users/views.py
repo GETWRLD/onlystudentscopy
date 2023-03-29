@@ -466,6 +466,7 @@ def createmessageroom(request, pk):
                     fail_silently=False,
                     )
                     messageroom.save()
+                    return redirect('subjects')
 
             messages.success(request, 'Your message was successfully sent!')
             
