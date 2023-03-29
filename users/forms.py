@@ -96,17 +96,15 @@ class ActiveProjectForm(ModelForm):
 class StudentAccountForm(ModelForm):
   class Meta:
     model = Profile
-    fields = ['username', 'location', 'short_intro', 'bio', 'profile_image', 
+    fields = ['username', 'short_intro', 'bio',
     'social_instagram', 'social_twitter', 'social_linkedin', 'social_youtube', 
     'social_website', 'social_vk', 'social_telegram', 'classs']
 
     widgets = {
       'subjects': forms.CheckboxSelectMultiple,
       'username': forms.TextInput,
-      'location': forms.TextInput,
       'short_intro': forms.TextInput,
       'bio': forms.TextInput,
-      'profile_image': forms.FileInput,
       'social_instagram': forms.TextInput,
       'social_twitter': forms.TextInput,
       'social_linkedin': forms.TextInput,
@@ -121,7 +119,7 @@ class StudentAccountForm(ModelForm):
 
     for name, field in self.fields.items():
       self.fields['username'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
-      self.fields['location'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
+      #self.fields['location'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['short_intro'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['bio'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['social_instagram'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
@@ -131,24 +129,22 @@ class StudentAccountForm(ModelForm):
       self.fields['social_website'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['social_vk'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['social_telegram'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
-      self.fields['profile_image'].widget.attrs.update({'class':'account-image-input'})
+      #self.fields['profile_image'].widget.attrs.update({'class':'account-image-input'})
       self.fields['classs'].widget.attrs.update({'class':'account-classs-input'})
 
 
 class MentorAccountForm(ModelForm):
   class Meta:
     model = Profile
-    fields = ['username', 'location', 'short_intro', 'bio', 'profile_image', 
+    fields = ['username', 'short_intro', 'bio', 
     'social_instagram', 'social_twitter', 'social_linkedin', 'social_youtube', 
     'social_website', 'social_vk', 'social_telegram', 'subjects', 'classs']
 
     widgets = {
       'subjects': forms.CheckboxSelectMultiple,
       'username': forms.TextInput,
-      'location': forms.TextInput,
       'short_intro': forms.TextInput,
       'bio': forms.TextInput,
-      'profile_image': forms.FileInput,
       'social_instagram': forms.TextInput,
       'social_twitter': forms.TextInput,
       'social_linkedin': forms.TextInput,
@@ -163,7 +159,7 @@ class MentorAccountForm(ModelForm):
 
     for name, field in self.fields.items():
       self.fields['username'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
-      self.fields['location'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
+      #self.fields['location'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['short_intro'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['bio'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['social_instagram'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
@@ -173,7 +169,7 @@ class MentorAccountForm(ModelForm):
       self.fields['social_website'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['social_vk'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
       self.fields['social_telegram'].widget.attrs.update({'class':'account-input', 'required':'', 'type':'text', 'name':'text', 'autocomplete':'off'})
-      self.fields['profile_image'].widget.attrs.update({'class':'account-image-input'})
+      #self.fields['profile_image'].widget.attrs.update({'class':'account-image-input'})
       self.fields['subjects'].widget.attrs.update({'class':'account-subjects-input'})
       self.fields['classs'].widget.attrs.update({'class':'account-classs-input'})
 

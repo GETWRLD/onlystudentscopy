@@ -9,7 +9,7 @@ from .utils import searchprofiles
 from django.core.mail import send_mail
 from django.conf import settings
 
-import cloudinary.uploader
+#import cloudinary.uploader
 
 
 
@@ -120,8 +120,28 @@ def createrequest(request, mentor):
             project.student = student
             project.mentor = mentor
             project.save()
-            return redirect('profile', pk=mentor.username)
+            send_mail(
+            f'Вам пришел запрос "{project.title}" от {project.student}',
+            f"""Запрос "{project.title}" от {project.student} находится во вкладке личных запросов.\n
+            Вы можете принять его, зайдя в меню личных запросов (через навигационную панель наверху страницы).\n 
+            OnlyStudents""",
+            settings.EMAIL_HOST_USER,
+            [mentor.email],
+            fail_silently=False,
+            )
+        
+            send_mail(
+                f'Ваш запрос "{project.title}" был успешно отправлен ментору {project.mentor}',
+                f"""Запрос "{project.title}" был успешно отправлен ментору {project.mentor}\n
+                Ожидайте, пока ментор примет его, или подайте публичную заявку, которую примет первый свободный ментор.\n 
+                OnlyStudents""",
+                settings.EMAIL_HOST_USER,
+                [student.email],
+                fail_silently=False,
+                )
 
+            return redirect('profile', pk=mentor.username)
+        
     context = {
         'form': form
     }
@@ -423,14 +443,32 @@ def createmessageroom(request, pk):
             messageroom.name = f"{user2.username}+{user1.username}"
             for messageroom1 in messagerooms:
                 if messageroom1.user2 == messageroom.user2:
-                    return redirect('subjects')
-                if messageroom1.user1 == messageroom.user2:
-                    return redirect('subjects')
-            else:
-                messageroom.save()
-            messageroom.save()
+                    print("c")
+                    if messageroom1.user1 == messageroom.user1:
+                        print("b")
+                        return redirect('subjects')
+                else:
+                    send_mail(
+                    f'Чат с "{user2}" был создан',
+                    f"""Чат с "{user2}", был создан. Не забывайте проверять его почаще! \n 
+                    OnlyStudents""",
+                    settings.EMAIL_HOST_USER,
+                    [user1.email],
+                    fail_silently=False,
+                    )
+        
+                    send_mail(
+                    f'Чат с "{user1}" был создан',
+                    f"""Чат с "{user1}", был создан. Не забывайте проверять его почаще! \n 
+                    OnlyStudents""",
+                    settings.EMAIL_HOST_USER,
+                    [user2.email],
+                    fail_silently=False,
+                    )
+                    messageroom.save()
 
             messages.success(request, 'Your message was successfully sent!')
+            
             return redirect('profile', pk=user2.username)
 
 

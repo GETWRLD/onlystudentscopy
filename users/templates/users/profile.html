@@ -35,7 +35,7 @@
                     {% endif %}
                     <div class="profile-field">
                       <div class="profile-skills">
-                        I know:
+                        Я знаю:
                       {% for subject in profile.subjects.all %}
                       <div class="profile-skill">
                         {{subject}}
@@ -46,12 +46,12 @@
                     <div class="profile-field">
                       <div class="profile-votes">
                         <div class="profile-vote">
-                          <p class="profile-vote-label">Students helped:</p>
+                          <p class="profile-vote-label">Помощей:</p>
                           {{profile.vote_total}}
                         </div>
                         <div class="profile-vote">
-                          <p class="profile-vote-label">Rating:</p>
-                          {{profile.vote_ratio}}
+                          <p class="profile-vote-label">Рейтинг:</p>
+                          {{profile.vote_ratio}}%
                         </div>
                       </div>
                     </div>
@@ -70,7 +70,7 @@
                         </svg>
                       </div>
                     </div>
-                    <span>Send Request</span>
+                    <span>Отпр. Запрос</span>
                   </button>
                 </a>
                 {% endif %}
@@ -84,7 +84,7 @@
                         </svg>
                       </div>
                     </div>
-                    <span>Chat</span>
+                    <span>Чат</span>
                   </button>
                 </a>
               </div>
