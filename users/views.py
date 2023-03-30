@@ -443,9 +443,7 @@ def createmessageroom(request, pk):
             messageroom.name = f"{user2.username}+{user1.username}"
             for messageroom1 in messagerooms:
                 if messageroom1.user2 == messageroom.user2:
-                    print("c")
                     if messageroom1.user1 == messageroom.user1:
-                        print("b")
                         return redirect('subjects')
                 else:
                     send_mail(
@@ -472,7 +470,7 @@ def createmessageroom(request, pk):
             
             return redirect('profile', pk=user2.username)
 
-#a
+
     context = {
     'user2': user2,
     'form': form,
