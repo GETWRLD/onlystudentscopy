@@ -29,5 +29,6 @@ urlpatterns = [
     #path('apply-for-teacher/', views.applyforteacher, name='applyforteacher'),
     path('publicprojectform/<str:pk>/', views.createpublicrequest, name='createpublicrequest'),
     #path('students-list/', views.students_list, name='studentslist')
-    path('confidentialpolicy/', views.confidential_policy, name='confidentialpolicy')
+    path('confidentialpolicy/', views.confidential_policy, name='confidentialpolicy'),
+    path('test/', views.test, name='test')
 ]

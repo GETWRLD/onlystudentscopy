@@ -641,3 +641,11 @@ def confidential_policy(request):
     return render(request, 'users/confidential_policy.html')
 
 
+def test(request):
+    if request.method == 'POST':
+        users = Profile.objects.all()
+        for user in users:
+            if user.role == 'mentor':
+                print(user.email)
+    return render(request, 'users/test.html')
+
