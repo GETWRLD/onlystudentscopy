@@ -160,7 +160,7 @@ def createpublicrequest(request, pk):
             project.student = student
             project.private = False
             project.save()
-            return redirect('allrequests')
+            return redirect('subjects')
 
     context = {
         'form': form
